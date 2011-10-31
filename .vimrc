@@ -1,3 +1,7 @@
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
 set nocompatible
 
 " syntax-highlighting
@@ -51,6 +55,9 @@ set wildmenu
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
+
+" definition of the completion field
+set completeopt=menuone,longest,preview
 
 " Tabs wechseln
 map <C-n> :tabnext<Enter>
@@ -109,6 +116,8 @@ if has("autocmd")
 
   "code completion
   autocmd FileType python set omnifunc=pythoncomplete#Complete
+  let g:SuperTabDefaultCompletionType = "context"
+
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -117,7 +126,21 @@ if has("autocmd")
   autocmd FileType c set omnifunc=ccomplete#Complete
 endif
 
+" python specific!!
 if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
+  "bicycle repair man is a python refactoring tool
   let g:bike_exceptions = 1
   source /usr/share/vim/addons/ftplugin/python_bike.vim
 endif
+
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF

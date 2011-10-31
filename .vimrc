@@ -83,6 +83,7 @@ map <C-h> 5h
 imap jj <ESC>
 noremap , ;
 noremap ; ,
+let mapleader="ö"
 
 " jump to next row in editor instead of next line
 noremap j gj
@@ -106,8 +107,8 @@ command! W      w
 command! Wq     wq
 command! WQ     wq
 
-map <LocalLeader>ce :edit ~/.vimrc<cr>          " quickly edit this file
-map <LocalLeader>cs :source ~/.vimrc<cr>        " quickly source this file
+map <leader>ce :tabnew ~/.vimrc<cr>        " quickly edit this file
+map <leader>cs :source ~/.vimrc<cr>        " quickly source this file
 
 if has("autocmd")
   " filetype plugin indent on
@@ -132,6 +133,10 @@ if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
   let g:bike_exceptions = 1
   source /usr/share/vim/addons/ftplugin/python_bike.vim
 endif
+
+" rope is also a refactoring tool
+map <leader>j :RopeGotoDefinition<CR>
+map <leader>r :RopeRename<CR>
 
 " Add the virtualenv's site-packages to vim path
 py << EOF

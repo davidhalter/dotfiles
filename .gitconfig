@@ -1,0 +1,14 @@
+[user]
+	name = David Halter
+	email = davidhalter88@gmail.com
+
+[color]
+  diff=auto
+  status=auto
+  branch=auto
+  interactive=auto
+  ui=true
+  pager=true
+
+[core]
+  editor = vim

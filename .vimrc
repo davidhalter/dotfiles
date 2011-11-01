@@ -107,17 +107,19 @@ command! W      w
 command! Wq     wq
 command! WQ     wq
 
+
+" Auto-reload vimrc on save
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
 map <leader>ce :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>cs :source ~/.vimrc<cr>        " quickly source this file
 
 if has("autocmd")
-  " filetype plugin indent on
+  filetype plugin indent on
   autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType html setlocal nosmartindent 
-
-  "code completion
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
-  let g:SuperTabDefaultCompletionType = "context"
 
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
@@ -125,27 +127,8 @@ if has("autocmd")
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
   autocmd FileType c set omnifunc=ccomplete#Complete
+
+  " close preview if its still open after insert
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
-" python specific!!
-if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
-  "bicycle repair man is a python refactoring tool
-  let g:bike_exceptions = 1
-  source /usr/share/vim/addons/ftplugin/python_bike.vim
-endif
-
-" rope is also a refactoring tool
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
-
-" Add the virtualenv's site-packages to vim path
-py << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF

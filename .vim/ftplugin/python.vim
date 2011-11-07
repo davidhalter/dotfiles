@@ -15,6 +15,9 @@ endif
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 
+" help
+map <leader>h <leader>pw
+
 call pathogen#infect('~/.vim/bundle') "runtime_append_all_bundles()
 call pathogen#helptags()
 

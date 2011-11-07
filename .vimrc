@@ -85,6 +85,9 @@ noremap , ;
 noremap ; ,
 let mapleader="ö"
 
+" Y should have the same behaviour like D, but instead Y is the same as yy, fix this:
+imap Y y$
+
 " jump to next row in editor instead of next line
 noremap j gj
 noremap k gk
@@ -113,11 +116,11 @@ if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
-map <leader>ce :tabnew ~/.vimrc<cr>        " quickly edit this file
-map <leader>cs :source ~/.vimrc<cr>        " quickly source this file
+map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
+map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
 if has("autocmd")
-  filetype plugin indent on
+  filetype plugin on
   autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType html setlocal nosmartindent 
 

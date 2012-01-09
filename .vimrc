@@ -86,7 +86,7 @@ noremap ; ,
 let mapleader="ö"
 
 " Y should have the same behaviour like D, but instead Y is the same as yy, fix this:
-imap Y y$
+map Y y$
 
 " jump to next row in editor instead of next line
 noremap j gj
@@ -115,6 +115,9 @@ command! WQ     wq
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
+
+" quickly edit the python settings
+map <leader>vp :tabnew ~/.vim/ftplugin/python.vim<cr>
 
 map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file

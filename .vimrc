@@ -181,10 +181,12 @@ set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
 set statusline+=\ %<%{strftime(\"%Y-%m-%dT%H:%M\",getftime(expand(\"%:p\")))}
 " position of the cursor
-set statusline+=%=%*\ lin:%l\,%L\ col:%c%V\ " pos:%o\ ascii:%b\ %P 
+set statusline+=%=%*\ %l/%L,\ %c%V\ " pos:%o\ ascii:%b\ %P 
 
 " now set it up to change the status line based on mode
+" I removed it again, because it makes the editor nervous, with all the
+" switching
 if version >= 700
-  au InsertEnter * hi StatusLine ctermfg=6 | hi User1 ctermfg=6 | hi User2 ctermfg=6
-  au InsertLeave * hi StatusLine ctermfg=7 | hi User1 ctermfg=7 | hi User2 ctermfg=7
+  " au InsertEnter * hi StatusLine ctermfg=6 | hi User1 ctermfg=6 | hi User2 ctermfg=6
+  " au InsertLeave * hi StatusLine ctermfg=7 | hi User1 ctermfg=7 | hi User2 ctermfg=7
 endif

@@ -23,3 +23,5 @@ alias terminal='gnome-terminal &'
 
 alias vi='vim -p'
 set -o vi
+
+export EDITOR=vim

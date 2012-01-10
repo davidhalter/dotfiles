@@ -33,6 +33,10 @@ set nowrap          " Zeilenumbruch deaktivieren
 set ruler
 set laststatus=2
 set showmode
+if has("ballooneval")
+  set ballooneval   " balloons are little hover menus
+endif
+set omnifunc=syntaxcomplete#Complete " set a basic complete function
 
 set title
 set backspace=2     " Allow backspacing over everything
@@ -44,7 +48,7 @@ set sidescrolloff=5 " keep at least 5 columns left/right of cursor
 
 set autoread        " watch for file changes by other programs
 filetype on         " automatic file type detection
-set smarttab                    " make <tab> and <backspace> smarter
+set smarttab        " make <tab> and <backspace> smarter
 set ignorecase      " Do case insensitive matching
 set smartcase       " Ignore case if search pattern is all lowercase, case-sensitive otherwise
 set autoindent smartindent      " turn on auto/smart indenting
@@ -55,6 +59,21 @@ set history=200     " remember the last 200 commands
 
 set wildmode=longest:full "a better menu, for opening files"
 set wildmenu
+
+set foldmethod=indent     " folding works with indents
+set foldlevel=99          " The higher the more folded regions are open.
+set foldnestmax=1         " foldnestmax is the limit for nesting folds
+
+" if you type h, when the cursor is at position 1, try to fold.
+function! HFolding()
+  let save_cursor = getpos(".")
+  if (save_cursor[2] == 1)
+    return "\<ESC>hza"
+  else
+    return "\<ESC>h"
+  endif
+endfunction
+noremap h a<C-R>=HFolding()<CR>
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
@@ -142,10 +161,17 @@ if has("autocmd")
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
+" for the pep8 plugin verifications, must be set before the plugin is loaded
+let g:pep8_map='<leader>8'
+
 " load pathogen plugins
 call pathogen#infect('~/.vim/bundle') "runtime_append_all_bundles()
 call pathogen#helptags()
 
+" the TaskList Plugin
+map <leader>td <Plug>TaskList 
+
+" ---------------------------------------------------------
 " user defined colors -> used for the status bar
 
 " since 'white' is not working, I have to select the color with the help
@@ -179,9 +205,9 @@ set statusline+=%y                                 " filetype
 
 set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
-set statusline+=\ %<%{strftime(\"%Y-%m-%dT%H:%M\",getftime(expand(\"%:p\")))}
+set statusline+=\ %<%{strftime(\"%Y-%m-%d\ %H:%M\",getftime(expand(\"%:p\")))}
 " position of the cursor
-set statusline+=%=%*\ %l/%L,\ %c%V\ " pos:%o\ ascii:%b\ %P 
+set statusline+=%=%*\ %l/%L,\ %2*%c%V\ " pos:%o\ ascii:%b\ %P 
 
 " now set it up to change the status line based on mode
 " I removed it again, because it makes the editor nervous, with all the
@@ -190,3 +216,14 @@ if version >= 700
   " au InsertEnter * hi StatusLine ctermfg=6 | hi User1 ctermfg=6 | hi User2 ctermfg=6
   " au InsertLeave * hi StatusLine ctermfg=7 | hi User1 ctermfg=7 | hi User2 ctermfg=7
 endif
+" ---------------------------------------------------------
+
+" Fancy window titles where possible
+if has('title') && (has('gui_running') || &title)
+  set titlestring=
+  set titlestring+=%F " File name
+  set titlestring+=\ -\ Dave's\ %{v:progname} " Program name
+endif
+
+
+

@@ -293,9 +293,11 @@ set statusline+=%y                                 " filetype
 
 set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
-set statusline+=\ %<%{strftime(\"%Y-%m-%d\ %H:%M\",getftime(expand(\"%:p\")))}
-" position of the cursor
-set statusline+=%=%*\ %l/%L,\ %2*%c%V\ " pos:%o\ ascii:%b\ %P 
+" don't show the last edit time, because I don't need it that much
+" set statusline+=\ %<%{strftime(\"%Y-%m-%d\ %H:%M\",getftime(expand(\"%:p\")))}
+" position of the cursor                " pos:%o\ ascii:%b\ %P 
+set statusline+=%*%=\ %l/%L,\ %2*%c%V\ 
+set statusline+=%*%{fugitive#statusline()}
 
 " now set it up to change the status line based on mode
 " I removed it again, because it makes the editor nervous, with all the

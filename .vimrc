@@ -4,8 +4,11 @@ call pathogen#helptags()
 
 set nocompatible
 
-" syntax-highlighting
+" color scheme
 set background=dark
+" let g:colors_name = "dave" " my very own color scheme
+
+" syntax-highlighting
 syntax on
 
 " Uncomment the following to have Vim jump to the last position when
@@ -113,7 +116,8 @@ command! WQ     wq
 
 " Auto-reload vimrc on save
 if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
+  " is to slow!
+  " autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 " quickly edit the python settings
@@ -138,3 +142,49 @@ if has("autocmd")
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
+" load pathogen plugins
+call pathogen#infect('~/.vim/bundle') "runtime_append_all_bundles()
+call pathogen#helptags()
+
+" user defined colors -> used for the status bar
+
+" since 'white' is not working, I have to select the color with the help
+" (cterm-colors) it's basically a little hack with the reversing of the
+" colors, but it looks better
+" yellow status bar stuff
+hi User1 term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermbg=yellow ctermfg=white guibg=yellow guifg=white
+" red status bar stuff
+hi User2 term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermbg=red ctermfg=white guibg=red guifg=white
+
+" this is the formating of the status bar
+" http://got-ravings.blogspot.com/2008/08/vim-pr0n-making-statuslines-that-own.html
+" clear the statusline for when vimrc is reloaded
+set statusline= 
+" the standard stuff
+set statusline+=%F
+set statusline+=%1*[%{strlen(&fenc)?&fenc:'none'}, " file encoding
+set statusline+=%{&ff}]                            " file format
+set statusline+=%*%h                               " help file flag
+set statusline+=%2*%m%*                            " modified flag
+set statusline+=%r                                 " readonly?
+set statusline+=%w                                 " ?
+set statusline+=%y                                 " filetype
+
+" if exists(":SyntasticCheck") == 2 " check seems not to work, although it should
+  " syntax checking with syntastic
+  let g:syntastic_check_on_open=1
+  " set statusline+=%#warningmsg#                    " switch to warning highlight
+  set statusline+=%2*%{SyntasticStatuslineFlag()}    " syntastic warnings -> compiler warnings
+" endif
+
+set statusline+=%1*                                " switch to different color
+" formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
+set statusline+=\ %<%{strftime(\"%Y-%m-%dT%H:%M\",getftime(expand(\"%:p\")))}
+" position of the cursor
+set statusline+=%=%*\ lin:%l\,%L\ col:%c%V\ " pos:%o\ ascii:%b\ %P 
+
+" now set it up to change the status line based on mode
+if version >= 700
+  au InsertEnter * hi StatusLine ctermfg=6 | hi User1 ctermfg=6 | hi User2 ctermfg=6
+  au InsertLeave * hi StatusLine ctermfg=7 | hi User1 ctermfg=7 | hi User2 ctermfg=7
+endif

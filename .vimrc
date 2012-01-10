@@ -1,3 +1,77 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Maintainer: David Halter <davidhalter88@gmail.com>
+"
+" Plugins_included:
+"     > fugitive - http://github.com/tpope/vim-fugitive
+"       provides a great interface for interacting with git (blame, etc9)
+"       KEY: see help files
+"           info -> :help fugitive
+"
+"     > git.vim - https://github.com/tpope/vim-git
+"       provides syntax highlighting for git configuration files
+"           info -> :help supertab
+"
+"     > syntastic - https://github.com/scrooloose/syntastic
+"       highlights things that are not syntactically correct
+"       in many different languages
+"       TODO: add support for immedate changes, not just on save/open
+"       TODO: add support for red highlighting, like the pyflakes plugin
+"           info -> :help pytest
+"
+"     > vim-surround - https://github.com/tpope/vim-surround
+"       used to edit parentheses, tags, etc.
+"       Key: e.g. cs"' changes both ends of a string " to ' 
+"           info -> :help surround
+"
+"     > TaskList.vim - https://github.com/vim-scripts/TaskList.vim
+"       A tasklist window, that lists all TODOs in the code and so on.
+"       Key: <leader>td
+"           info -> there seems to be no help arround
+"
+"     > gundo.vim - https://github.com/sjl/gundo.vim
+"       Used to look at the history of your saves and restore something
+"       Key: <leader>u
+"           info -> :help gundo
+"
+"     > snipMate.vim - https://github.com/msanders/snipmate.vim
+"       Snippets for many languages (similar to TextMate's):
+"           info -> :help snipMate
+"
+"     > Command-T - https://github.com/wincent/Command-T
+"       Command-T plug-in provides an extremely fast,
+"       intuitive mechanism for opening files:
+"       Caution: Ruby must be installed!
+"           info -> :help CommandT
+"           screencast and web-help -> http://amix.dk/blog/post/19501
+"
+" Python_specific_plugins:
+"     > rope-vim - https://github.com/sontek/rope-vim
+"       refactoring and 'goto tool' for python
+"       Key: <leader>h
+"           info -> :help ropevim
+"
+"     > pytest.vim - https://github.com/alfredodeza/pytest.vim
+"       executes all python tests and displays them
+"       Key: <leader>t* -> see the definitions
+"           info -> :help pytest
+"
+"     > pep8 - https://github.com/vim-scripts/pep8
+"       checks a pyhton file for pep8 compatibility
+"       Key: <leader>t* -> see the definitions
+"           info -> cannot find the help files
+"
+"     > pydoc.vim - https://github.com/fs111/pydoc.vim
+"       shows the python documentation for a specific command
+"       Key: <leader>h
+"           info -> cannot find the help files
+"
+"
+" Important_keyboard_changes: -> orderer by importance
+"     > mapped jj to <ESC> in normal mode [I really like fast escapes]
+"     > changed ; and , [more comfortable]
+"     > changed m and ' [to use marks it should be fast available, m is faster]
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -65,15 +139,16 @@ set foldlevel=99          " The higher the more folded regions are open.
 set foldnestmax=1         " foldnestmax is the limit for nesting folds
 
 " if you type h, when the cursor is at position 1, try to fold.
+" TODO make it work with the visual mode and numbers
 function! HFolding()
   let save_cursor = getpos(".")
   if (save_cursor[2] == 1)
-    return "\<ESC>hza"
+    return "\<ESC>za"
   else
-    return "\<ESC>h"
+    return "\<ESC>"
   endif
 endfunction
-noremap h a<C-R>=HFolding()<CR>
+noremap h i<C-R>=HFolding()<CR>
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
@@ -102,9 +177,19 @@ map <C-l> 5l
 map <C-h> 5h
 
 " special settings!
+" love that ESC is now central in the keyboard
 imap jj <ESC>
+
+" change behaviour of , and ; because its much more intuitive
 noremap , ;
 noremap ; ,
+
+" marks are very tedious to get to, so just change the command
+noremap ' m
+noremap m '
+
+" mapleader ö on german/swiss keyboards, feel free to change that, to whatever
+" you like
 let mapleader="ö"
 
 " Y should have the same behaviour like D, but instead Y is the same as yy, fix this:
@@ -147,9 +232,9 @@ map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
 if has("autocmd")
   filetype plugin on
-  autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
   autocmd FileType html setlocal nosmartindent 
 
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -171,6 +256,9 @@ call pathogen#helptags()
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 
 
+" the gundo plugin
+nnoremap <leader>u :GundoToggle<CR>
+
 " ---------------------------------------------------------
 " user defined colors -> used for the status bar
 
@@ -187,7 +275,7 @@ hi User2 term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermbg=red cterm
 " clear the statusline for when vimrc is reloaded
 set statusline= 
 " the standard stuff
-set statusline+=%F
+set statusline+=%t                                 " file name
 set statusline+=%1*[%{strlen(&fenc)?&fenc:'none'}, " file encoding
 set statusline+=%{&ff}]                            " file format
 set statusline+=%*%h                               " help file flag

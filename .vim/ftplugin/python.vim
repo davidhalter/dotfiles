@@ -1,8 +1,5 @@
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
-" code completion
-let g:SuperTabDefaultCompletionType = "context"
-
 " python specific!! bicycle repair man is a refactoring tool like rope
 " I don't use it normally, because I use rope
 if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
@@ -27,12 +24,6 @@ map <leader>r :RopeRename<CR>
 
 " help pydoc plugin
 map <leader>h <leader>pw
-
-" Fold here-doc chunks
-let g:sh_fold_enabled=1
-
-" Default to bash for sh syntax
-let is_bash=1
 
 " Highlight everything possible for python
 let python_highlight_all=1 

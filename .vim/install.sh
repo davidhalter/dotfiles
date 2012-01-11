@@ -8,3 +8,5 @@ git submodule foreach git submodule update
 sudo aptitude install pyflakes
 # used for the pep8 plugin
 sudo aptitude install pep8
+# ctags is used for 
+sudo aptitude install exuberant-ctags

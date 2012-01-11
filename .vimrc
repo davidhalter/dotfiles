@@ -9,6 +9,10 @@
 "
 "     > git.vim - https://github.com/tpope/vim-git
 "       provides syntax highlighting for git configuration files
+"           info -> apparently no help, because it's only a highlighter
+"
+"     > supertab - https://github.com/ervandew/supertab
+"           makes <Tab> an autocompletion feature
 "           info -> :help supertab
 "
 "     > syntastic - https://github.com/scrooloose/syntastic
@@ -67,9 +71,13 @@
 "
 "
 " Important_keyboard_changes: -> orderer by importance
+"   I changed many things, those are just the important ones, which you should
+"   really know. In my opinion it is important, that the more used commands
+"   have easier shortcuts. Therefore I switched some commands, like the marks.
 "     > mapped jj to <ESC> in normal mode [I really like fast escapes]
 "     > changed ; and , [more comfortable]
 "     > changed m and ' [to use marks it should be fast available, m is faster]
+"     > changed q and @ [again: faster]
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
@@ -92,8 +100,6 @@ if has("autocmd")
     \| exe "normal g'\"" | endif
 endif
 
-" The following are commented out as they cause vim to behave a lot
-" differently from regular Vi. They are highly recommended though.
 set showcmd         " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
 set tabstop=2       " Tab-Breite
@@ -102,6 +108,13 @@ set shiftwidth=2
 set expandtab
 set nu              " Zeilennummerierung
 set nowrap          " Zeilenumbruch deaktivieren
+set textwidth=79
+
+" Fold here-doc chunks
+let g:sh_fold_enabled=1
+
+" Default to bash for sh syntax
+let is_bash=1
 
 " Liste unten
 set ruler
@@ -137,6 +150,7 @@ set wildmenu
 set foldmethod=indent     " folding works with indents
 set foldlevel=99          " The higher the more folded regions are open.
 set foldnestmax=1         " foldnestmax is the limit for nesting folds
+
 
 " if you type h, when the cursor is at position 1, try to fold.
 " TODO make it work with the visual mode and numbers
@@ -249,6 +263,10 @@ endif
 " for the pep8 plugin verifications, must be set before the plugin is loaded
 let g:pep8_map='<leader>8'
 
+" code completion
+" let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+
 " load pathogen plugins
 call pathogen#infect('~/.vim/bundle') "runtime_append_all_bundles()
 call pathogen#helptags()
@@ -314,6 +332,3 @@ if has('title') && (has('gui_running') || &title)
   set titlestring+=%F " File name
   set titlestring+=\ -\ Dave's\ %{v:progname} " Program name
 endif
-
-
-

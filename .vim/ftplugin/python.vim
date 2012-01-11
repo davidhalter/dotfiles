@@ -26,7 +26,7 @@ map <leader>r :RopeRename<CR>
 map <leader>h <leader>pw
 
 " Highlight everything possible for python
-let python_highlight_all=1 
+let g:python_highlight_all=1 
 
 " Pyflakes should not use the quickfix window:
 let g:pyflakes_use_quickfix = 0

@@ -32,6 +32,11 @@
 "       Key: <leader>td
 "           info -> there seems to be no help arround
 "
+"     > taglist-plus - https://github.com/klen/vim-taglist-plus
+"       A taglist window, which works for many languages, using exuberant tags
+"       Key: <leader>l
+"           info -> :help taglist-plus
+"
 "     > gundo.vim - https://github.com/sjl/gundo.vim
 "       Used to look at the history of your saves and restore something
 "       Key: <leader>u
@@ -81,9 +86,6 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
 set nocompatible
 
 " color scheme
@@ -167,8 +169,6 @@ noremap h i<C-R>=HFolding()<CR>
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
 
-" definition of the completion field
-set completeopt=menuone,longest,preview
 
 " Tabs wechseln
 map <C-n> :tabnext<Enter>
@@ -244,6 +244,27 @@ map <leader>vp :tabnew ~/.vim/ftplugin/python.vim<cr>
 map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
+
+" for the pep8 plugin verifications, must be set before the plugin is loaded
+let g:pep8_map='<leader>8'
+
+" definition of the completion field
+set completeopt=menuone,longest,preview
+
+" code completion SuperTab config
+let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+"
+" instead of <c-p> as completion, which is backwards
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+let g:SuperTabLongestEnhanced = 1
+" let g:SuperTabLongestHighlight = 1
+
+" load pathogen plugins
+"call pathogen#runtime_append_all_bundles()
+call pathogen#infect('~/.vim/bundle')
+call pathogen#helptags()
+
 if has("autocmd")
   filetype plugin on
   autocmd FileType html setlocal nosmartindent 
@@ -260,22 +281,14 @@ if has("autocmd")
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
-" for the pep8 plugin verifications, must be set before the plugin is loaded
-let g:pep8_map='<leader>8'
-
-" code completion
-" let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-
-" load pathogen plugins
-call pathogen#infect('~/.vim/bundle') "runtime_append_all_bundles()
-call pathogen#helptags()
-
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 
 
 " the gundo plugin
 nnoremap <leader>u :GundoToggle<CR>
+
+" the TagList Plugin
+map <leader>l :TlistToggle<CR>
 
 " ---------------------------------------------------------
 " user defined colors -> used for the status bar

@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/git"]
 	path = .vim/bundle/git
 	url = https://github.com/tpope/vim-git.git
+[submodule ".vim/bundle/vim-taglist-plus"]
+	path = .vim/bundle/vim-taglist-plus
+	url = https://github.com/klen/vim-taglist-plus.git

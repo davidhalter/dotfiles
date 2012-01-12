@@ -1,42 +1,42 @@
 [submodule ".vim/bundle/supertab"]
 	path = .vim/bundle/supertab
-	url = https://github.com/ervandew/supertab.git
+	url = git://github.com/ervandew/supertab.git
 [submodule ".vim/bundle/ropevim"]
 	path = .vim/bundle/ropevim
-	url = https://github.com/sontek/rope-vim.git
+	url = git://github.com/sontek/rope-vim.git
 [submodule ".vim/bundle/pydoc"]
 	path = .vim/bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
+	url = git://github.com/fs111/pydoc.vim.git
 [submodule ".vim/bundle/pep8"]
 	path = .vim/bundle/pep8
-	url = https://github.com/vim-scripts/pep8.git
+	url = git://github.com/vim-scripts/pep8.git
 [submodule ".vim/bundle/syntastic"]
 	path = .vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic.git
+	url = git://github.com/scrooloose/syntastic.git
 [submodule ".vim/bundle/tasklist"]
 	path = .vim/bundle/tasklist
-	url = https://github.com/vim-scripts/TaskList.vim.git
+	url = git://github.com/vim-scripts/TaskList.vim.git
 [submodule ".vim/bundle/py.test"]
 	path = .vim/bundle/py.test
-	url = https://github.com/alfredodeza/pytest.vim.git
+	url = git://github.com/alfredodeza/pytest.vim.git
 [submodule ".vim/bundle/surround"]
 	path = .vim/bundle/surround
-	url = https://github.com/tpope/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/snipmate"]
 	path = .vim/bundle/snipmate
-	url = https://github.com/msanders/snipmate.vim.git
+	url = git://github.com/msanders/snipmate.vim.git
 [submodule ".vim/bundle/gundo"]
 	path = .vim/bundle/gundo
-	url = https://github.com/sjl/gundo.vim.git
+	url = git://github.com/sjl/gundo.vim.git
 [submodule ".vim/bundle/command-t"]
 	path = .vim/bundle/command-t
-	url = https://github.com/wincent/Command-T.git
+	url = git://github.com/wincent/Command-T.git
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
-	url = http://github.com/tpope/vim-fugitive.git
+	url = git://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/git"]
 	path = .vim/bundle/git
-	url = https://github.com/tpope/vim-git.git
+	url = git://github.com/tpope/vim-git.git
 [submodule ".vim/bundle/vim-taglist-plus"]
 	path = .vim/bundle/vim-taglist-plus
-	url = https://github.com/klen/vim-taglist-plus.git
+	url = git://github.com/klen/vim-taglist-plus.git

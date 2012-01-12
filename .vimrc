@@ -253,17 +253,10 @@ set completeopt=menuone,longest,preview
 
 " code completion SuperTab config
 let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-"
 " instead of <c-p> as completion, which is backwards
 let g:SuperTabContextDefaultCompletionType = "<c-n>"
 let g:SuperTabLongestEnhanced = 1
 " let g:SuperTabLongestHighlight = 1
-
-" load pathogen plugins
-"call pathogen#runtime_append_all_bundles()
-call pathogen#infect('~/.vim/bundle')
-call pathogen#helptags()
 
 if has("autocmd")
   filetype plugin on
@@ -275,11 +268,18 @@ if has("autocmd")
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+  " for php use it only for functions
+  autocmd FileType php let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
   autocmd FileType c set omnifunc=ccomplete#Complete
 
   " close preview if its still open after insert
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
+
+" load pathogen plugins
+"call pathogen#runtime_append_all_bundles()
+call pathogen#infect('~/.vim/bundle')
+call pathogen#helptags()
 
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 

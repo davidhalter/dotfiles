@@ -289,6 +289,8 @@ nnoremap <leader>u :GundoToggle<CR>
 
 " the TagList Plugin
 map <leader>l :TlistToggle<CR>
+" updatetime is important, how often the tags are regenerated
+set updatetime=500 " in ms
 
 " ---------------------------------------------------------
 " user defined colors -> used for the status bar
@@ -343,5 +345,5 @@ endif
 if has('title') && (has('gui_running') || &title)
   set titlestring=
   set titlestring+=%F " File name
-  set titlestring+=\ -\ Dave's\ %{v:progname} " Program name
+  set titlestring+=\ -\ Dave's\ VIM " %{v:progname} " Program name
 endif

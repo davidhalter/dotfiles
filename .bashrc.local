@@ -22,7 +22,7 @@ alias l='ls -CF'
 alias terminal='gnome-terminal &'
 
 alias vi='vim -p'
-set -o vi
+#set -o vi
 
 export EDITOR=vi
 

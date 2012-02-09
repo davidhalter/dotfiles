@@ -84,6 +84,9 @@
 "     > changed m and ' [to use marks it should be fast available, m is faster]
 "     > changed q and @ [again: faster]
 "
+" Important_addons:
+"   - folding with h possible, if you're at the first line.
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
 set nocompatible
@@ -254,7 +257,9 @@ set completeopt=menuone,longest,preview
 " code completion SuperTab config
 let g:SuperTabDefaultCompletionType = "context"
 " instead of <c-p> as completion, which is backwards
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" use always c-x c-o -> not c-n
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
 " let g:SuperTabLongestHighlight = 1
 
@@ -268,8 +273,6 @@ if has("autocmd")
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-  " for php use it only for functions
-  autocmd FileType php let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
   autocmd FileType c set omnifunc=ccomplete#Complete
 
   " close preview if its still open after insert

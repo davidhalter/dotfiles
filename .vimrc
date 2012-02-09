@@ -205,6 +205,10 @@ noremap ; ,
 noremap ' m
 noremap m '
 
+" the same is also true for makros.
+noremap q @
+noremap @ q
+
 " mapleader ö on german/swiss keyboards, feel free to change that, to whatever
 " you like
 let mapleader="ö"

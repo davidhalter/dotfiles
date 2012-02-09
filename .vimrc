@@ -28,7 +28,7 @@
 "           info -> :help surround
 "
 "     > TaskList.vim - https://github.com/vim-scripts/TaskList.vim
-"       A tasklist window, that lists all TODOs in the code and so on.
+"       A tasklist window, that lists all TOD0s in the code and so on.
 "       Key: <leader>td
 "           info -> there seems to be no help arround
 "
@@ -158,16 +158,23 @@ set foldnestmax=1         " foldnestmax is the limit for nesting folds
 
 
 " if you type h, when the cursor is at position 1, try to fold.
-" TODO make it work with the visual mode and numbers
-function! HFolding()
+" TODO make folds open with l and not jump 1 character to the right
+function! HFolding(count)
+  let counter = a:count
+  if (counter == 0)
+    let counter = 1
+  endif
   let save_cursor = getpos(".")
   if (save_cursor[2] == 1)
-    return "\<ESC>za"
+    "echo save_cursor[2]
+    normal! za
   else
-    return "\<ESC>"
+    exec "normal! ".counter."h"
   endif
 endfunction
-noremap h i<C-R>=HFolding()<CR>
+"noremap h :normal! h<CR>
+nnoremap h :<C-U>call HFolding(v:count)<CR>
+" <C-R>=HFolding()<CR>
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color

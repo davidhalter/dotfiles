@@ -55,6 +55,7 @@
 "       Command-T plug-in provides an extremely fast,
 "       intuitive mechanism for opening files:
 "       Caution: Ruby must be installed!
+"       FIXME  It is currently not installed, deprecate it?
 "           info -> :help CommandT
 "           screencast and web-help -> http://amix.dk/blog/post/19501
 "

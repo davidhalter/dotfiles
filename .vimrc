@@ -42,9 +42,14 @@
 "       Key: <leader>u
 "           info -> :help gundo
 "
-"     > snipMate.vim - https://github.com/msanders/snipmate.vim
+"     > snipMate.vim - https://github.com/davidhalter/vim-snipmate.vim
+"       (my own fork, because of some python stuff)
 "       Snippets for many languages (similar to TextMate's):
 "           info -> :help snipMate
+"           Dependencies:
+"               https://github.com/MarcWeber/vim-addon-mw-utils.git
+"               https://github.com/tomtom/tlib_vim.git
+"               https://github.com/honza/snipmate-snippets.git
 "
 "     > Command-T - https://github.com/wincent/Command-T
 "       Command-T plug-in provides an extremely fast,
@@ -86,6 +91,7 @@
 "
 " Important_addons:
 "   - folding with h possible, if you're at the first line.
+"   - tabbing is very powerfull, with snippets and autocompletion
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off
@@ -305,6 +311,11 @@ nnoremap <leader>u :GundoToggle<CR>
 map <leader>l :TlistToggle<CR>
 " updatetime is important, how often the tags are regenerated
 set updatetime=500 " in ms
+
+" snipmate wants that (for some snippets)
+let g:snips_author = 'David Halter'
+" the dot should not match, otherwise it results in very strange bugs in python
+let g:snipMateAllowMatchingDot = 0
 
 " ---------------------------------------------------------
 " user defined colors -> used for the status bar

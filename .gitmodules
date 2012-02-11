@@ -51,4 +51,4 @@
 	url = https://github.com/honza/snipmate-snippets.git
 [submodule ".vim/bundle/vim-snipmate"]
 	path = .vim/bundle/vim-snipmate
-	url = git@github.com:davidhalter/vim-snipmate.git
+	url = https://github.com/davidhalter/vim-snipmate.git

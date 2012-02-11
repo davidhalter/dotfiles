@@ -26,6 +26,9 @@ alias vi='vim -p'
 
 export EDITOR=vi
 
+# python startup
+export PYTHONSTARTUP=~/.pythonrc
+
 # define console colors
 # Reset
 Color_Off='\e[0m'       # Text Reset

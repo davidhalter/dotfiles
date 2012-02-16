@@ -224,16 +224,24 @@ noremap m '
 noremap q @
 noremap @ q
 
-" mapleader ö on german/swiss keyboards, feel free to change that, to whatever
-" you like
-let mapleader="ö"
-
 " Y should have the same behaviour like D, but instead Y is the same as yy, fix this:
 map Y y$
 
 " jump to next row in editor instead of next line
 noremap j gj
 noremap k gk
+
+" mapleader ö on german/swiss keyboards, feel free to change that, to whatever
+" you like
+let mapleader="ö"
+
+" insert one char, and still be in normal mode
+function! RepeatChar(char, count)
+  return repeat(a:char, a:count)
+endfunction
+nnoremap ä :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
+nnoremap Ä :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
+
 
 " execute stuff
 map <F12> :map <F5> :w<lt>Enter> :!./<lt>Enter>

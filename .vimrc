@@ -90,6 +90,8 @@
 "     > changed ; and , [more comfortable]
 "     > changed m and ' [to use marks it should be fast available, m is faster]
 "     > changed q and @ [again: faster]
+"     > ä is able to input one character in normal mode and stay there
+"     > mapleader: ö
 "
 " Important_addons:
 "   - folding with h possible, if you're at the first line.

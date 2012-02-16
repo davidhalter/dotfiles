@@ -2,6 +2,7 @@
 " Maintainer: David Halter <davidhalter88@gmail.com>
 "
 " Plugins_included:
+"     > minibufexpl - not yet used (colors are bad)
 "     > fugitive - http://github.com/tpope/vim-fugitive
 "       provides a great interface for interacting with git (blame, etc9)
 "       KEY: see help files
@@ -188,8 +189,8 @@ hi CursorLine term=none cterm=none ctermbg=0      " adjust color
 
 
 " Tabs wechseln
-map <C-n> :tabnext<Enter>
-map <C-p> :tabprevious<Enter>
+map <C-n> gt
+map <C-p> gT
 map <C-t> :tabnew<Space>
 " Indent
 "map <C-i> 0i<Tab><Esc>
@@ -265,6 +266,33 @@ map <leader>vp :tabnew ~/.vim/ftplugin/python.vim<cr>
 map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
+" minibufexplorer (MBE) config
+" don't load/start minibufexplorer now, because he's not able to color properly
+let g:loaded_minibufexplorer = 1
+" always display syntax in minibufexpl
+let g:miniBufExplForceSyntaxEnable = 1
+" for other explorers like TagList
+let g:miniBufExplModSelTarget = 1
+" omit the buffer number from MBE's buffer display
+"let g:miniBufExplShowBufNumbers = 0
+" an empty status line instead of "-MiniBufExplorer-"
+let g:statusLineText = ""
+
+" colors for MBE
+"hi MBENormal term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermbg=yellow ctermfg=white guibg=yellow guifg=white
+" buffers that have NOT CHANGED and are VISIBLE
+hi MBEVisibleNormal term=bold cterm=bold gui=bold guibg=Gray guifg=Black ctermbg=Blue ctermfg=Gray
+" buffers that have CHANGED and are VISIBLE
+hi MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black
+hi MBENormal ctermfg=cyan
+
+" MBE mappings
+" FIXME mbe keys are always being loaded - only load them if MBE is loaded
+if g:loaded_minibufexplorer == 0
+  nnoremap gt :MBEbn<CR>
+  nnoremap gT :MBEbp<CR>
+endif
+
 
 " for the pep8 plugin verifications, must be set before the plugin is loaded
 let g:pep8_map='<leader>8'
@@ -317,6 +345,7 @@ set updatetime=500 " in ms
 let g:snips_author = 'David Halter'
 " the dot should not match, otherwise it results in very strange bugs in python
 let g:snipMateAllowMatchingDot = 0
+
 
 " ---------------------------------------------------------
 " user defined colors -> used for the status bar

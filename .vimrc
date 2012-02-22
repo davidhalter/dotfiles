@@ -177,7 +177,11 @@ function! HFolding(count)
   let save_cursor = getpos(".")
   if (save_cursor[2] == 1)
     "echo save_cursor[2]
-    normal! za
+    try
+      normal! za
+    catch /E490/ " (No fold found)
+      " we don't want that error, since that is not important (when using h)
+    endtry
   else
     exec "normal! ".counter."h"
   endif

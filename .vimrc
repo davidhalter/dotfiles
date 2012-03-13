@@ -362,6 +362,17 @@ let g:snipMateAllowMatchingDot = 0
 
 
 " ---------------------------------------------------------
+" Highlighting stuff
+" ---------------------------------------------------------
+
+" make a ruler at line 80
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
+
 " user defined colors -> used for the status bar
 
 " since 'white' is not working, I have to select the color with the help

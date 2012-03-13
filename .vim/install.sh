@@ -10,3 +10,5 @@ sudo aptitude install pyflakes
 sudo aptitude install pep8
 # ctags is used for 
 sudo aptitude install exuberant-ctags
+
+#sudo pip install vimpdb # doesn't work without vim-server

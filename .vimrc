@@ -90,6 +90,8 @@
 "     > changed ; and , [more comfortable]
 "     > changed m and ' [to use marks it should be fast available, m is faster]
 "     > changed q and @ [again: faster]
+"     > control+w saves
+"     > changed # and *, because that's more typical for a german keyboard layout
 "     > ä is able to input one character in normal mode and stay there
 "     > mapleader: ö
 "
@@ -236,6 +238,10 @@ map Y y$
 " jump to next row in editor instead of next line
 noremap j gj
 noremap k gk
+
+" jump to next row in editor instead of next line
+noremap # *
+noremap * #
 
 " mapleader ö on german/swiss keyboards, feel free to change that, to whatever
 " you like

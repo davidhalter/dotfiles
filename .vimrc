@@ -239,7 +239,7 @@ map Y y$
 noremap j gj
 noremap k gk
 
-" jump to next row in editor instead of next line
+" for german keyboard layout better
 noremap # *
 noremap * #
 

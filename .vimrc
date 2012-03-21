@@ -267,6 +267,10 @@ command! W      w
 command! Wq     wq
 command! WQ     wq
 
+" save is now also on "<C-W>", in insert mode there would be a delete word, but
+" that is not really important.
+map <C-w> :w<CR>
+imap <C-w> <ESC><C-W>
 
 " Auto-reload vimrc on save
 if has("autocmd")

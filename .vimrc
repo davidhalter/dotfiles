@@ -105,7 +105,7 @@ set nocompatible
 
 " color scheme
 set background=dark
-highlight Normal ctermfg=white guifg=white ctermbg=black guibg=black
+highlight Normal guifg=white guibg=black " ctermbg=black ctermfg=white
 " let g:colors_name = "dave" " my very own color scheme
 
 " syntax-highlighting

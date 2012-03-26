@@ -90,7 +90,7 @@
 "     > changed ; and , [more comfortable]
 "     > changed m and ' [to use marks it should be fast available, m is faster]
 "     > changed q and @ [again: faster]
-"     > control+w saves
+"     > s saves
 "     > changed # and *, because that's more typical for a german keyboard layout
 "     > ä is able to input one character in normal mode and stay there
 "     > mapleader: ö
@@ -274,10 +274,8 @@ command! W      w
 command! Wq     wq
 command! WQ     wq
 
-" save is now also on "<C-W>", in insert mode there would be a delete word, but
-" that is not really important.
-" map <C-w> :w<CR>
-" imap <C-w> <ESC><C-W>
+" I don't use s much, so use it save, i use that a lot more.
+map s :w<CR>
 
 " Auto-reload vimrc on save
 if has("autocmd")

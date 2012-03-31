@@ -22,6 +22,15 @@ alias l='ls -CF'
 alias terminal='gnome-terminal &'
 
 alias vi='vim -p'
+
+# git aliases
+alias gc='git commit'
+alias gca='git commit -a'
+alias gl='git log'
+# gs is sometimes used because of 'Ghostscript', but overwrite it anyway
+alias gs='git status'
+alias gd='git diff'
+alias ga='git add'
 #set -o vi
 
 export EDITOR=vi

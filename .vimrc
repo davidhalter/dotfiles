@@ -60,6 +60,11 @@
 "           info -> :help CommandT
 "           screencast and web-help -> http://amix.dk/blog/post/19501
 "
+"     > w3m.vim - https://github.com/yuratomo/w3m.vim
+"           Text based browsing in vim.
+"           w3m must be installed, but it is shipped with most Linux distros.
+"           Key: :W3m
+"
 " Python_specific_plugins:
 "     > rope-vim - https://github.com/sontek/rope-vim
 "       refactoring and 'goto tool' for python
@@ -369,6 +374,9 @@ let g:snips_author = 'David Halter'
 " the dot should not match, otherwise it results in very strange bugs in python
 let g:snipMateAllowMatchingDot = 0
 
+" w3m plugin
+let g:w3m#search_engine = "https://www.google.com/search?q="
+    
 
 " ---------------------------------------------------------
 " Highlighting stuff

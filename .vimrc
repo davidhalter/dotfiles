@@ -105,6 +105,16 @@
 "   - tabbing is very powerfull, with snippets and autocompletion
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" plugins not loaded:
+
+" don't load/start minibufexplorer now, because he's not able to color properly
+let g:loaded_minibufexplorer = 1
+if !executable('w3m')
+  let g:loaded_w3m = 1
+endif
+
+" start
 filetype off
 set nocompatible
 
@@ -295,8 +305,6 @@ map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
 " minibufexplorer (MBE) config
-" don't load/start minibufexplorer now, because he's not able to color properly
-let g:loaded_minibufexplorer = 1
 " always display syntax in minibufexpl
 let g:miniBufExplForceSyntaxEnable = 1
 " for other explorers like TagList

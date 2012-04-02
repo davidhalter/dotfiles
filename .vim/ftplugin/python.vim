@@ -1,4 +1,6 @@
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+" normally: autocmd FileType python
+setlocal shiftwidth=4 tabstop=4 softtabstop=4
+setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 " python specific!! bicycle repair man is a refactoring tool like rope
 " I don't use it normally, because I use rope
@@ -6,6 +8,11 @@ if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
   "bicycle repair man is a python refactoring tool
   let g:bike_exceptions = 1
   source /usr/share/vim/addons/ftplugin/python_bike.vim
+endif
+
+" enable debugging
+if filereadable("~/.vim/ftplugin/vimpdb/VimPdb.vim")
+  "source ~/.vim/ftplugin/vimpdb/VimPdb.vim
 endif
 
 " pytest plugin

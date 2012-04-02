@@ -106,84 +106,68 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" plugins not loaded:
+filetype off        " for some we have to disable it first
 
-" don't load/start minibufexplorer now, because he's not able to color properly
-let g:loaded_minibufexplorer = 1
-if !executable('w3m')
-  let g:loaded_w3m = 1
+" reset to vim-defaults
+if &compatible          " only if not set before:
+    set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
 endif
 
-" start
-filetype off
-set nocompatible
-
-" color scheme
-set background=dark
-highlight Normal guifg=white guibg=black " ctermbg=black ctermfg=white
-" let g:colors_name = "dave" " my very own color scheme
-
-" syntax-highlighting
-syntax on
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
-endif
+" --------------------------------------------------------------------------
+" Basic Editor settings
+" --------------------------------------------------------------------------
+filetype on         " automatic file type detection
 
 set showcmd         " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
-set tabstop=2       " Tab-Breite
-set softtabstop=2   " Tab-Breite
-set shiftwidth=2
-set expandtab
+set tabstop=2       " number of spaces a tab counts for
+set softtabstop=2   " ?
+set shiftwidth=2    " spaces for autoindents  
+set expandtab       " turn a tabs into spaces
 set nu              " Zeilennummerierung
 set nowrap          " Zeilenumbruch deaktivieren
-set textwidth=79
+set textwidth=79    " text automatically breaks after 79 chars
 
-" Fold here-doc chunks
-let g:sh_fold_enabled=1
+set ruler           " show cursor position in status bar
+set laststatus=2    " use 2 lines for the status bar (happens only when needed?)
+set showmode        " show mode in status bar (insert/replace/...)
+set showcmd         " show typed command in status bar
 
-" Default to bash for sh syntax
-let is_bash=1
-
-" Liste unten
-set ruler
-set laststatus=2
-set showmode
-if has("ballooneval")
-  set ballooneval   " balloons are little hover menus
-endif
-set omnifunc=syntaxcomplete#Complete " set a basic complete function
-
-set title
-set backspace=2     " Allow backspacing over everything
-set hlsearch        " Highlight search terms
-set incsearch       " Show search matches as you type
-
+set title           " show file in titlebar
+set bs=indent,eol,start " Allow backspacing over everything in insert mode
 set scrolloff=5     " keep at least 5 lines above/below cursor
 set sidescrolloff=5 " keep at least 5 columns left/right of cursor
 
 set autoread        " watch for file changes by other programs
-filetype on         " automatic file type detection
 set smarttab        " make <tab> and <backspace> smarter
 set ignorecase      " Do case insensitive matching
 set smartcase       " Ignore case if search pattern is all lowercase, case-sensitive otherwise
+set esckeys         " map missed escape sequences (enables keypad keys)
 set autoindent smartindent      " turn on auto/smart indenting
 
 set undolevels=1000 " number of forgivable mistakes
 set updatecount=100 " write swap file to disk every 100 chars
 set history=200     " remember the last 200 commands
 
+set lazyredraw          " no redraws in macros
+set confirm             " get a dialog when :q, :w, or :wq fails
+" set nobackup            " no backup~ files.
+set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
+set hidden              " remember undo after quitting
+set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
+
+
 set wildmode=longest:full "a better menu, for opening files"
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
 set wildmenu
+
+" --------------------------------------------------------------------------
+" Folding
+" --------------------------------------------------------------------------
 
 set foldmethod=indent     " folding works with indents
 set foldlevel=99          " The higher the more folded regions are open.
 set foldnestmax=1         " foldnestmax is the limit for nesting folds
-
 
 " if you type h, when the cursor is at position 1, try to fold.
 " TODO make folds open with l and not jump 1 character to the right
@@ -208,9 +192,9 @@ endfunction
 nnoremap h :<C-U>call HFolding(v:count)<CR>
 " <C-R>=HFolding()<CR>
 
-set cul                                           " highlight current line
-hi CursorLine term=none cterm=none ctermbg=0      " adjust color
-
+" --------------------------------------------------------------------------
+" User commands
+" --------------------------------------------------------------------------
 
 " Tabs wechseln
 map <C-n> gt
@@ -218,13 +202,6 @@ map <C-p> gT
 map <C-t> :tabnew<Space>
 " Indent
 "map <C-i> 0i<Tab><Esc>
-" Split wechseln
-"map + <C-w>w
-" Split-Grösse ändern
-"map <C-j> <C-w>+
-"map <C-k> <C-w>-
-"map <C-h> <C-w><
-"map <C-l> <C-w>>
 
 " faster scrolling with control
 map <C-j> 5j
@@ -232,7 +209,6 @@ map <C-k> 5k
 map <C-l> 5l
 map <C-h> 5h
 
-" special settings!
 " love that ESC is now central in the keyboard
 imap jj <ESC>
 
@@ -304,6 +280,20 @@ map <leader>vp :tabnew ~/.vim/ftplugin/python.vim<cr>
 map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
+" --------------------------------------------------------------------------
+" Plugins enable/disable
+" --------------------------------------------------------------------------
+
+" don't load/start minibufexplorer now, because he's not able to color properly
+let g:loaded_minibufexplorer = 1
+if !executable('w3m')
+  let g:loaded_w3m = 1
+endif
+
+" --------------------------------------------------------------------------
+" Plugins settings
+" --------------------------------------------------------------------------
+
 " minibufexplorer (MBE) config
 " always display syntax in minibufexpl
 let g:miniBufExplForceSyntaxEnable = 1
@@ -345,6 +335,20 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
 " let g:SuperTabLongestHighlight = 1
 
+" --------------------------------------------------------------------------
+" Language settings (setting it late is important)
+" --------------------------------------------------------------------------
+" 
+" There are also files in the ftplugin directory, which do this for python.
+
+" shell
+let g:sh_fold_enabled=1 " Fold here-doc chunks
+let is_bash=1           " Default to bash for sh syntax
+
+"html/xml
+set matchpairs+=<:>     " specially for html
+
+set omnifunc=syntaxcomplete#Complete " set a basic complete function
 if has("autocmd")
   filetype plugin on
   autocmd FileType html setlocal nosmartindent 
@@ -356,6 +360,16 @@ if has("autocmd")
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
   autocmd FileType c set omnifunc=ccomplete#Complete
+
+  " smartindent:
+  " When typing '#' as the first character in a new line, the indent for    
+  " that line is removed, the '#' is put in the first column.  The indent   
+  " is restored for the next line. 
+  " If you don't want this, use this        
+  " mapping: ":inoremap # X^H#", where ^H is entered with CTRL-V CTRL-H.    
+  " When using the ">>" command, lines starting with '#' are not shifted                 
+  " right.
+  autocmd FileType python,php inoremap # X#
 
   " close preview if its still open after insert
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif
@@ -386,9 +400,21 @@ let g:snipMateAllowMatchingDot = 0
 let g:w3m#search_engine = "https://www.google.com/search?q="
     
 
-" ---------------------------------------------------------
+" --------------------------------------------------------------------------
 " Highlighting stuff
-" ---------------------------------------------------------
+" --------------------------------------------------------------------------
+
+" basic color scheme
+set background=dark
+highlight Normal guifg=white guibg=black " ctermbg=black ctermfg=white
+" let g:colors_name = "dave" " my very own color scheme
+
+" color settings (if terminal/gui supports it)
+if &t_Co > 2 || has("gui_running")
+  syntax on           " syntax-highlighting
+  set hlsearch        " Highlight search terms (very useful!)
+  set incsearch       " Show search matches while typing
+endif
 
 " make a ruler at line 80
 if exists('+colorcolumn')
@@ -451,4 +477,23 @@ if has('title') && (has('gui_running') || &title)
   set titlestring=
   set titlestring+=%F " File name
   set titlestring+=\ -\ Dave's\ VIM " %{v:progname} " Program name
+endif
+
+" Always jump to the last known cursor position. 
+" Don't do it when the position is invalid or when inside
+" an event handler (happens when dropping a file on gvim). 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal g'\"" | endif
+endif
+
+set cul                                           " highlight current line
+hi CursorLine term=none cterm=none ctermbg=0      " adjust color
+
+" --------------------------------------------------------------------------
+" gVim / desktop stuff - should work for MacVim, too
+" --------------------------------------------------------------------------
+
+if has("ballooneval") " only available in gvim
+  set ballooneval   " balloons are little hover menus
 endif

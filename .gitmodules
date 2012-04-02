@@ -54,4 +54,4 @@
 	url = git://github.com/davidhalter/vim-snipmate.git
 [submodule ".vim/bundle/w3m.vim"]
 	path = .vim/bundle/w3m.vim
-	url = https://github.com/yuratomo/w3m.vim
+	url = git://github.com/yuratomo/w3m.vim

@@ -61,9 +61,15 @@
 "           screencast and web-help -> http://amix.dk/blog/post/19501
 "
 "     > w3m.vim - https://github.com/yuratomo/w3m.vim
-"           Text based browsing in vim.
-"           w3m must be installed, but it is shipped with most Linux distros.
-"           Key: :W3m
+"       Text based browsing in vim.
+"       w3m must be installed, but it is shipped with most Linux distros.
+"       Key: :W3m
+"       Key: <leader>w
+"
+"     > conque-term - https://github.com/rosenfeld/conque-term
+"       Using a shell within VIM
+"       Key: :ConqueTermTab bash
+"       Key: <leader>b
 "
 " Python_specific_plugins:
 "     > rope-vim - https://github.com/sontek/rope-vim
@@ -440,7 +446,11 @@ let g:snipMateAllowMatchingDot = 0
 
 " w3m plugin
 let g:w3m#search_engine = "https://www.google.com/search?q="
-    
+map <leader>w :W3mTab 
+
+" conque-term
+map <leader>b :ConqueTermTab bash<CR>
+
 
 " --------------------------------------------------------------------------
 " Highlighting stuff

@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/w3m.vim"]
 	path = .vim/bundle/w3m.vim
 	url = git://github.com/yuratomo/w3m.vim
+[submodule ".vim/bundle/conque-term"]
+	path = .vim/bundle/conque-term
+	url = git://github.com/rosenfeld/conque-term.git

@@ -149,17 +149,17 @@ set autoindent smartindent      " turn on auto/smart indenting
 set undolevels=1000 " number of forgivable mistakes
 set updatecount=100 " write swap file to disk every 100 chars
 set history=200     " remember the last 200 commands
+set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
+set hidden              " remember undo after quitting
 
 set lazyredraw          " no redraws in macros
 set confirm             " get a dialog when :q, :w, or :wq fails
-" set nobackup            " no backup~ files.
-set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
-set hidden              " remember undo after quitting
 set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
+" set nobackup            " no backup~ files.
 
-set wildmode=longest:full "a better menu, for opening files"
-set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn
-set wildmenu
+set wildmode=longest:full
+set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn " ignore this files, for completion
+set wildmenu              "a better menu, for opening files
 
 " --------------------------------------------------------------------------
 " Folding
@@ -248,7 +248,49 @@ nnoremap Ä :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 
 " execute stuff
-map <F12> :map <F5> :w<lt>Enter> :!./<lt>Enter>
+let g:execution_counter = 4       " start with <F4> as mappings
+function! SetExecute()
+  let cur_file = expand("%")
+  let perm = getfperm(cur_file)
+
+  if perm[2] == 'x' || perm[5] == 'x' ||  perm[8] == 'x'
+    " this means it is an execution, therefore just execute
+    let str = './'.cur_file
+  else
+    " no execution - try to do it differently
+    if &filetype == 'python'
+      let str = '!python '.cur_file
+    elseif &filetype == 'php'
+      let str = '!php '.cur_file
+    elseif &filetype == 'vim'
+      let str = 'source '.cur_file
+    elseif &filetype == 'sh'
+      let str = '!sh '.cur_file
+    elseif &filetype == 'c' || &filetype == 'cpp'
+      let without_ft = substitute(cur_file, '\v\.(cc|cpp|h|c)', '', '')
+      let str = '!make && '.without_ft
+    else
+      let str = cur_file
+    endif
+  endif
+  let full = ':map <F'.g:execution_counter.'> :w<Enter> :'.str.'<Enter>'
+  echohl WarningMsg " we like to have a red warning
+  call inputsave()
+  let full_ack = input('add execution: ', full, 'file')
+  call inputrestore()
+  echohl None
+
+  exec full_ack
+
+  " handle execution_counter (which F__ Key is called)
+  let g:execution_counter += 1
+  if g:execution_counter > 11 " reset counter if too high, but this shouldn't happen...
+    let g:execution_counter = 3
+  endif
+
+endfunction
+
+map <F12> :call SetExecute()<CR>
 imap <F12> <ESC><F12>
 imap <F11> <ESC><F11>
 imap <F10> <ESC><F10>
@@ -369,7 +411,7 @@ if has("autocmd")
   " mapping: ":inoremap # X^H#", where ^H is entered with CTRL-V CTRL-H.    
   " When using the ">>" command, lines starting with '#' are not shifted                 
   " right.
-  autocmd FileType python,php inoremap # X#
+  autocmd FileType python,php,vim inoremap # X#
 
   " close preview if its still open after insert
   autocmd InsertLeave * if pumvisible() == 0|pclose|endif

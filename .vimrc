@@ -248,14 +248,14 @@ nnoremap Ä :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
 
 
 " execute stuff
-let g:execution_counter = 4       " start with <F4> as mappings
+let s:execution_counter = 4       " start with <F4> as mappings
 function! SetExecute()
   let cur_file = expand("%")
   let perm = getfperm(cur_file)
 
   if perm[2] == 'x' || perm[5] == 'x' ||  perm[8] == 'x'
     " this means it is an execution, therefore just execute
-    let str = './'.cur_file
+    let str = '!./'.cur_file
   else
     " no execution - try to do it differently
     if &filetype == 'python'
@@ -268,12 +268,12 @@ function! SetExecute()
       let str = '!sh '.cur_file
     elseif &filetype == 'c' || &filetype == 'cpp'
       let without_ft = substitute(cur_file, '\v\.(cc|cpp|h|c)', '', '')
-      let str = '!make && '.without_ft
+      let str = '!make && ./'.without_ft
     else
       let str = cur_file
     endif
   endif
-  let full = ':map <F'.g:execution_counter.'> :w<Enter> :'.str.'<Enter>'
+  let full = ':map <F'.s:execution_counter.'> :w<Enter> :'.str.'<Enter>'
   echohl WarningMsg " we like to have a red warning
   call inputsave()
   let full_ack = input('add execution: ', full, 'file')
@@ -283,9 +283,9 @@ function! SetExecute()
   exec full_ack
 
   " handle execution_counter (which F__ Key is called)
-  let g:execution_counter += 1
-  if g:execution_counter > 11 " reset counter if too high, but this shouldn't happen...
-    let g:execution_counter = 3
+  let s:execution_counter += 1
+  if s:execution_counter > 11 " reset counter if too high, but this shouldn't happen...
+    let s:execution_counter = 3
   endif
 
 endfunction

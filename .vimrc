@@ -139,6 +139,7 @@ set scrolloff=5     " keep at least 5 lines above/below cursor
 set sidescrolloff=5 " keep at least 5 columns left/right of cursor
 
 set autoread        " watch for file changes by other programs
+set autowrite       " write current buffer, when running :make
 set smarttab        " make <tab> and <backspace> smarter
 set ignorecase      " Do case insensitive matching
 set smartcase       " Ignore case if search pattern is all lowercase, case-sensitive otherwise
@@ -155,7 +156,6 @@ set confirm             " get a dialog when :q, :w, or :wq fails
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
 set hidden              " remember undo after quitting
 set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
-
 
 set wildmode=longest:full "a better menu, for opening files"
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn

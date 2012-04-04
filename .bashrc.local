@@ -14,6 +14,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# mkdir and ls in one command
+md () { mkdir -p "$@" && cd "$_"; }
+
 # some more ls aliases
 alias ll='ls -alF'
 alias la='ls -A'

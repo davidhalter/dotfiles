@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/conque-term"]
 	path = .vim/bundle/conque-term
 	url = git://github.com/rosenfeld/conque-term.git
+[submodule ".vim/bundle/jedi"]
+	path = .vim/bundle/jedi
+	url = git://github.com/davidhalter/jedi.git

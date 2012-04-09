@@ -37,6 +37,7 @@ alias gd='git diff'
 alias ga='git add'
 alias gu='git push'
 alias gp='git pull'
+alias gb='git branch'
 #set -o vi
 
 export EDITOR=vi

@@ -97,7 +97,7 @@
 "   I changed many things, those are just the important ones, which you should
 "   really know. In my opinion it is important, that the more used commands
 "   have easier shortcuts. Therefore I switched some commands, like the marks.
-"     > mapped jj to <ESC> in normal mode [I really like fast escapes]
+"     > mapped jk to <ESC> in normal mode [I really like fast escapes]
 "     > changed ; and , [more comfortable]
 "     > changed m and ' [to use marks it should be fast available, m is faster]
 "     > changed q and @ [again: faster]
@@ -126,9 +126,9 @@ filetype on         " automatic file type detection
 
 set showcmd         " Show (partial) command in status line.
 set showmatch       " Show matching brackets.
-set tabstop=2       " number of spaces a tab counts for
-set softtabstop=2   " ?
-set shiftwidth=2    " spaces for autoindents  
+set tabstop=4       " number of spaces a tab counts for
+set softtabstop=4   " ?
+set shiftwidth=4    " spaces for autoindents  
 set expandtab       " turn a tabs into spaces
 set nu              " Zeilennummerierung
 set nowrap          " Zeilenumbruch deaktivieren
@@ -216,7 +216,7 @@ map <C-l> 5l
 map <C-h> 5h
 
 " love that ESC is now central in the keyboard
-imap jj <ESC>
+imap jk <ESC>
 
 " change behaviour of , and ; because its much more intuitive
 noremap , ;
@@ -312,6 +312,14 @@ command! Q      q
 command! W      w
 command! Wq     wq
 command! WQ     wq
+
+" Sudo write
+if executable('sudo') && executable('tee')
+  command! SUwrite
+        \ execute 'w !sudo tee % > /dev/null' |
+        \ setlocal nomodified
+endif
+cmap w!! SUwrite
 
 " I don't use s much, so use it save, i use that a lot more.
 map s :w<CR>
@@ -549,3 +557,7 @@ hi CursorLine term=none cterm=none ctermbg=0      " adjust color
 if has("ballooneval") " only available in gvim
   set ballooneval   " balloons are little hover menus
 endif
+
+" opens a tab for every new buffer and switches to the right ones
+set switchbuf=usetab,newtab
+

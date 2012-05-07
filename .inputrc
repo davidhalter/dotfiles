@@ -7,7 +7,7 @@ $if mode=vi
     "gg": beginning-of-history
     "G": end-of-history
     set keymap vi-insert
-    "jj": vi-movement-mode
+    "jk": vi-movement-mode
     #"\C-w": backward-kill-word
     #"\C-p": history-search-backward
 $endif

@@ -508,7 +508,7 @@ set statusline+=%r                                 " readonly?
 set statusline+=%w                                 " ?
 set statusline+=%y                                 " filetype
 
-if filereadable('~/.vim/bundle/syntastic/plugin/syntastic.vim')
+if filereadable($HOME.'/.vim/bundle/syntastic/plugin/syntastic.vim')
   " syntax checking with syntastic
   let g:syntastic_check_on_open=1
   " set statusline+=%#warningmsg#                    " switch to warning highlight
@@ -519,10 +519,11 @@ set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
 " don't show the last edit time, because I don't need it that much
 " set statusline+=\ %<%{strftime(\"%Y-%m-%d\ %H:%M\",getftime(expand(\"%:p\")))}
+
 " position of the cursor                " pos:%o\ ascii:%b\ %P 
 set statusline+=%*%=\ %l/%L,\ %2*%c%V\ 
 
-if executable('git') && filereadable('~/.vim/bundle/fugitive/plugin/fugitive.vim')
+if executable('git') && filereadable($HOME.'/.vim/bundle/fugitive/plugin/fugitive.vim')
     set statusline+=%*%{fugitive#statusline()}
 endif
 

@@ -508,12 +508,12 @@ set statusline+=%r                                 " readonly?
 set statusline+=%w                                 " ?
 set statusline+=%y                                 " filetype
 
-" if exists(":SyntasticCheck") == 2 " check seems not to work, although it should
+if filereadable('~/.vim/bundle/syntastic/plugin/syntastic.vim')
   " syntax checking with syntastic
   let g:syntastic_check_on_open=1
   " set statusline+=%#warningmsg#                    " switch to warning highlight
   set statusline+=%2*%{SyntasticStatuslineFlag()}    " syntastic warnings -> compiler warnings
-" endif
+endif
 
 set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline
@@ -521,7 +521,10 @@ set statusline+=%1*                                " switch to different color
 " set statusline+=\ %<%{strftime(\"%Y-%m-%d\ %H:%M\",getftime(expand(\"%:p\")))}
 " position of the cursor                " pos:%o\ ascii:%b\ %P 
 set statusline+=%*%=\ %l/%L,\ %2*%c%V\ 
-set statusline+=%*%{fugitive#statusline()}
+
+if executable('git') && filereadable('~/.vim/bundle/fugitive/plugin/fugitive.vim')
+    set statusline+=%*%{fugitive#statusline()}
+endif
 
 " now set it up to change the status line based on mode
 " I removed it again, because it makes the editor nervous, with all the
@@ -559,5 +562,7 @@ if has("ballooneval") " only available in gvim
 endif
 
 " opens a tab for every new buffer and switches to the right ones
-set switchbuf=usetab,newtab
+if has("switchbuf")
+    set switchbuf=usetab,newtab
+endif
 

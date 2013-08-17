@@ -43,7 +43,8 @@ alias gb='git branch'
 export EDITOR=vi
 
 # python startup
-export PYTHONSTARTUP=~/.pythonrc
+export PYTHONPATH=/home/david/.vim/bundle/jedi-vim/jedi/
+export PYTHONSTARTUP="$(python -m jedi repl)"
 
 # define console colors
 # Reset

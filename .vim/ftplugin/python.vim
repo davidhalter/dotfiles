@@ -29,9 +29,6 @@ nmap <silent><Leader>te <Esc>:Pytest error<CR>
 map <leader>j :RopeGotoDefinition<CR>
 map <leader>r :RopeRename<CR>
 
-" for jedi: map ctrl+space for autocompletion
-imap <Nul> <C-X><C-O>
-
 " help pydoc plugin
 map <leader>h <leader>pw
 

@@ -305,6 +305,7 @@ imap <F8> <ESC><F8>
 imap <F7> <ESC><F7>
 imap <F6> <ESC><F6>
 imap <F5> <ESC><F5>
+imap <F4> <ESC><F4>
 set pastetoggle=<F2>
 
 " aliase setzen
@@ -404,12 +405,14 @@ let is_bash=1           " Default to bash for sh syntax
 "html/xml
 set matchpairs+=<:>     " specially for html
 
+
 set omnifunc=syntaxcomplete#Complete " set a basic complete function
 if has("autocmd")
   filetype plugin on
   autocmd FileType html setlocal nosmartindent 
 
-  autocmd FileType python set omnifunc=jedi#Complete
+  " done by jedi plugin
+  "autocmd FileType python set omnifunc=jedi#complete
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
@@ -426,9 +429,6 @@ if has("autocmd")
   " When using the ">>" command, lines starting with '#' are not shifted                 
   " right.
   autocmd FileType python,php,vim inoremap # X#
-
-  " close preview if its still open after insert
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 endif
 
 " load pathogen plugins
@@ -443,6 +443,7 @@ map <leader>td <Plug>TaskList
 nnoremap <leader>u :GundoToggle<CR>
 
 " the TagList Plugin
+let Tlist_Inc_Winwidth=0
 map <leader>l :TlistToggle<CR>
 " updatetime is important, how often the tags are regenerated
 set updatetime=500 " in ms

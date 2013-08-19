@@ -11,3 +11,10 @@ $if mode=vi
     #"\C-w": backward-kill-word
     #"\C-p": history-search-backward
 $endif
+
+#see http://www.reddit.com/r/commandline/comments/kbeoe/you_can_make_readline_and_bash_much_more_user/
+# for description of these commands
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set show-all-if-ambiguous on
+set show-all-if-unmodified on

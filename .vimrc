@@ -111,6 +111,8 @@
 "   - tabbing is very powerfull, with snippets and autocompletion
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:jedi#show_function_definition= 0
+let g:jedi#popup_select_first = 0
 
 filetype off        " for some we have to disable it first
 
@@ -265,7 +267,11 @@ function! SetExecute()
   else
     " no execution - try to do it differently
     if &filetype == 'python'
-      let str = '!python '.cur_file
+      if stridx(cur_file, 'test_') == 0
+        let str = '!py.test '.cur_file
+      else
+        let str = '!python '.cur_file
+      end
     elseif &filetype == 'php'
       let str = '!php '.cur_file
     elseif &filetype == 'vim'

@@ -2,15 +2,10 @@
 " Maintainer: David Halter <davidhalter88@gmail.com>
 "
 " Plugins_included:
-"     > minibufexpl - not yet used (colors are bad)
 "     > fugitive - http://github.com/tpope/vim-fugitive
 "       provides a great interface for interacting with git (blame, etc9)
 "       KEY: see help files
 "           info -> :help fugitive
-"
-"     > git.vim - https://github.com/tpope/vim-git
-"       provides syntax highlighting for git configuration files
-"           info -> apparently no help, because it's only a highlighter
 "
 "     > supertab - https://github.com/ervandew/supertab
 "           makes <Tab> an autocompletion feature
@@ -22,11 +17,6 @@
 "       TODO: add support for immedate changes, not just on save/open
 "       TODO: add support for red highlighting, like the pyflakes plugin
 "           info -> :help pytest
-"
-"     > vim-surround - https://github.com/tpope/vim-surround
-"       used to edit parentheses, tags, etc.
-"       Key: e.g. cs"' changes both ends of a string " to ' 
-"           info -> :help surround
 "
 "     > TaskList.vim - https://github.com/vim-scripts/TaskList.vim
 "       A tasklist window, that lists all TOD0s in the code and so on.
@@ -52,39 +42,17 @@
 "               https://github.com/tomtom/tlib_vim.git
 "               https://github.com/honza/snipmate-snippets.git
 "
-"     > Command-T - https://github.com/wincent/Command-T
-"       Command-T plug-in provides an extremely fast,
-"       intuitive mechanism for opening files:
-"       Caution: Ruby must be installed!
-"       FIXME  It is currently not installed, deprecate it?
-"           info -> :help CommandT
-"           screencast and web-help -> http://amix.dk/blog/post/19501
-"
 "     > w3m.vim - https://github.com/yuratomo/w3m.vim
 "       Text based browsing in vim.
 "       w3m must be installed, but it is shipped with most Linux distros.
 "       Key: :W3m
 "       Key: <leader>w
 "
-"     > conque-term - https://github.com/rosenfeld/conque-term
-"       Using a shell within VIM
-"       Key: :ConqueTermTab bash
-"       Key: <leader>b
 "
 " Python_specific_plugins:
-"     > pytest.vim - https://github.com/alfredodeza/pytest.vim
-"       executes all python tests and displays them
-"       Key: <leader>t* -> see the definitions
-"           info -> :help pytest
-"
 "     > pep8 - https://github.com/vim-scripts/pep8
 "       checks a pyhton file for pep8 compatibility
 "       Key: <leader>t* -> see the definitions
-"           info -> cannot find the help files
-"
-"     > pydoc.vim - https://github.com/fs111/pydoc.vim
-"       shows the python documentation for a specific command
-"       Key: <leader>h
 "           info -> cannot find the help files
 "
 "

@@ -74,8 +74,6 @@
 "   - tabbing is very powerfull, with snippets and autocompletion
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:jedi#show_function_definition= 0
-let g:jedi#popup_select_first = 0
 
 filetype off        " for some we have to disable it first
 

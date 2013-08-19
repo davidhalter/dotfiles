@@ -2,14 +2,6 @@
 setlocal shiftwidth=4 tabstop=4 softtabstop=4
 setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-" python specific!! bicycle repair man is a refactoring tool like rope
-" I don't use it normally, because I use rope
-if filereadable("/usr/share/vim/addons/ftplugin/python_bike.vim")
-  "bicycle repair man is a python refactoring tool
-  let g:bike_exceptions = 1
-  source /usr/share/vim/addons/ftplugin/python_bike.vim
-endif
-
 " enable debugging
 if filereadable("~/.vim/ftplugin/vimpdb/VimPdb.vim")
   "source ~/.vim/ftplugin/vimpdb/VimPdb.vim
@@ -24,10 +16,6 @@ nmap <silent><Leader>tm <Esc>:Pytest method<CR>
 nmap <silent><Leader>tn <Esc>:Pytest next<CR>
 nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
 nmap <silent><Leader>te <Esc>:Pytest error<CR>
-
-" rope plugin is also a refactoring tool
-map <leader>j :RopeGotoDefinition<CR>
-map <leader>r :RopeRename<CR>
 
 " help pydoc plugin
 map <leader>h <leader>pw

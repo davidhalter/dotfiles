@@ -7,19 +7,6 @@ if filereadable("~/.vim/ftplugin/vimpdb/VimPdb.vim")
   "source ~/.vim/ftplugin/vimpdb/VimPdb.vim
 endif
 
-" pytest plugin
-" Execute the tests
-nmap <silent><Leader>tf <Esc>:Pytest file<CR>
-nmap <silent><Leader>tc <Esc>:Pytest class<CR>
-nmap <silent><Leader>tm <Esc>:Pytest method<CR>
-" cycle through test errors
-nmap <silent><Leader>tn <Esc>:Pytest next<CR>
-nmap <silent><Leader>tp <Esc>:Pytest previous<CR>
-nmap <silent><Leader>te <Esc>:Pytest error<CR>
-
-" help pydoc plugin
-map <leader>h <leader>pw
-
 " Highlight everything possible for python
 let g:python_highlight_all=1 
 

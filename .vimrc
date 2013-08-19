@@ -72,11 +72,6 @@
 "       Key: <leader>b
 "
 " Python_specific_plugins:
-"     > rope-vim - https://github.com/sontek/rope-vim
-"       refactoring and 'goto tool' for python
-"       Key: <leader>h
-"           info -> :help ropevim
-"
 "     > pytest.vim - https://github.com/alfredodeza/pytest.vim
 "       executes all python tests and displays them
 "       Key: <leader>t* -> see the definitions
@@ -462,9 +457,6 @@ let g:snipMateAllowMatchingDot = 0
 " w3m plugin
 let g:w3m#search_engine = "https://www.google.com/search?q="
 map <leader>w :W3mTab 
-
-" conque-term
-map <leader>b :ConqueTermTab bash<CR>
 
 
 " --------------------------------------------------------------------------

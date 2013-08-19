@@ -33,15 +33,6 @@
 "       Key: <leader>u
 "           info -> :help gundo
 "
-"     > snipMate.vim - https://github.com/davidhalter/vim-snipmate.vim
-"       (my own fork, because of some python stuff)
-"       Snippets for many languages (similar to TextMate's):
-"           info -> :help snipMate
-"           Dependencies:
-"               https://github.com/MarcWeber/vim-addon-mw-utils.git
-"               https://github.com/tomtom/tlib_vim.git
-"               https://github.com/honza/snipmate-snippets.git
-"
 "     > w3m.vim - https://github.com/yuratomo/w3m.vim
 "       Text based browsing in vim.
 "       w3m must be installed, but it is shipped with most Linux distros.

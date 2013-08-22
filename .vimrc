@@ -87,6 +87,7 @@ set expandtab       " turn a tabs into spaces
 set nu              " use line numbers
 set nowrap          " deactive wrapping
 set textwidth=79    " text automatically breaks after 79 chars
+set modeline        " enable modeline
 
 set ruler           " show cursor position in status bar
 set laststatus=2    " use 2 lines for the status bar (happens only when needed?)

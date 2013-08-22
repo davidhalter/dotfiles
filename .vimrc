@@ -84,8 +84,8 @@ set tabstop=4       " number of spaces a tab counts for
 set softtabstop=4   " ?
 set shiftwidth=4    " spaces for autoindents  
 set expandtab       " turn a tabs into spaces
-set nu              " Zeilennummerierung
-set nowrap          " Zeilenumbruch deaktivieren
+set nu              " use line numbers
+set nowrap          " deactive wrapping
 set textwidth=79    " text automatically breaks after 79 chars
 
 set ruler           " show cursor position in status bar
@@ -110,12 +110,12 @@ set undolevels=1000 " number of forgivable mistakes
 set updatecount=100 " write swap file to disk every 100 chars
 set history=200     " remember the last 200 commands
 set viminfo='20,\"500   " remember copy registers after quitting in the .viminfo file -- 20 jump links, regs up to 500 lines'
-set hidden              " remember undo after quitting
+set hidden          " remember undo after quitting
 
-set lazyredraw          " no redraws in macros
-set confirm             " get a dialog when :q, :w, or :wq fails
-set mouse=v             " use mouse in visual mode (not normal,insert,command,help mode
-" set nobackup            " no backup~ files.
+set lazyredraw      " no redraws in macros
+set confirm         " get a dialog when :q, :w, or :wq fails
+set mouse=v         " use mouse in visual mode (not normal,insert,command,help mode
+" set nobackup        " no backup~ files.
 
 set wildmode=longest:full
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn " ignore this files, for completion

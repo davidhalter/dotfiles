@@ -371,7 +371,7 @@ if has("autocmd")
   autocmd FileType html setlocal nosmartindent 
 
   " done by jedi plugin
-  "autocmd FileType python set omnifunc=jedi#complete
+  "autocmd FileType python set omnifunc=jedi#completions
   autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS

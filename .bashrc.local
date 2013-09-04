@@ -47,7 +47,7 @@ alias gb='git branch'
 export EDITOR=vi
 
 # python startup
-export PYTHONSTARTUP="$(python -m jedi repl)"
+export PYTHONSTARTUP="$(python -m jedi repl 2>/dev/null)"
 
 # define console colors
 # Reset

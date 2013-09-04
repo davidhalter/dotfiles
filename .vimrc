@@ -115,7 +115,9 @@ set hidden          " remember undo after quitting
 
 set lazyredraw      " no redraws in macros
 set confirm         " get a dialog when :q, :w, or :wq fails
-set mouse=v         " use mouse in visual mode (not normal,insert,command,help mode
+if has('mouse')
+    set mouse=v         " use mouse in visual mode (not normal,insert,command,help mode
+endif
 " set nobackup        " no backup~ files.
 
 set wildmode=longest:full
@@ -126,32 +128,34 @@ set wildmenu              "a better menu, for opening files
 " Folding
 " --------------------------------------------------------------------------
 
-set foldmethod=indent     " folding works with indents
-set foldlevel=99          " The higher the more folded regions are open.
-set foldnestmax=1         " foldnestmax is the limit for nesting folds
+if has('folding')
+    set foldmethod=indent     " folding works with indents
+    set foldlevel=99          " The higher the more folded regions are open.
+    set foldnestmax=1         " foldnestmax is the limit for nesting folds
 
-" if you type h, when the cursor is at position 1, try to fold.
-" TODO make folds open with l and not jump 1 character to the right
-function! HFolding(count)
-  let counter = a:count
-  if (counter == 0)
-    let counter = 1
-  endif
-  let save_cursor = getpos(".")
-  if (save_cursor[2] == 1)
-    "echo save_cursor[2]
-    try
-      normal! za
-    catch /E490/ " (No fold found)
-      " we don't want that error, since that is not important (when using h)
-    endtry
-  else
-    exec "normal! ".counter."h"
-  endif
-endfunction
-"noremap h :normal! h<CR>
-nnoremap h :<C-U>call HFolding(v:count)<CR>
-" <C-R>=HFolding()<CR>
+    " if you type h, when the cursor is at position 1, try to fold.
+    " TODO make folds open with l and not jump 1 character to the right
+    function! HFolding(count)
+      let counter = a:count
+      if (counter == 0)
+        let counter = 1
+      endif
+      let save_cursor = getpos(".")
+      if (save_cursor[2] == 1)
+        "echo save_cursor[2]
+        try
+          normal! za
+        catch /E490/ " (No fold found)
+          " we don't want that error, since that is not important (when using h)
+        endtry
+      else
+        exec "normal! ".counter."h"
+      endif
+    endfunction
+    "noremap h :normal! h<CR>
+    nnoremap h :<C-U>call HFolding(v:count)<CR>
+    " <C-R>=HFolding()<CR>
+endif
 
 " --------------------------------------------------------------------------
 " User commands

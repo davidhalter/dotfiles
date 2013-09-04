@@ -8,10 +8,11 @@ fi
 is_uninstall="test '$1' == '-u'"
 
 if [ "$1" != '' -a "$1" != '-u' ]; then
-    echo "Params don't make sense."
+    echo "Params don't make sense, look at --help"
     exit 1
 fi
 
+# cd to current directory
 dotfiles_directory=$(dirname $(readlink -f $0))
 
 cd $dotfiles_directory
@@ -33,13 +34,27 @@ for file in $files_to_home; do
     fi
 done
 
-exit 1
+bashrc_include='. ~/.bashrc.local'
+bashrc=~/.bashrc
+source_bashrc_local=""
+echo $source_bashrc_local
 
-if [ $(type -p git) == '' ]; then 
-    echo 'Git not available, cannot install sub repositories properly.'
+if $is_uninstall; then
+    if test "$bashrc_include" == "$(tail -1 $bashrc)"; then
+        # delete the last line
+        sed -i '$ d' $bashrc
+    fi
 else
-    git submodule init
-    git submodule update
-    git submodule foreach git submodule init
-    git submodule foreach git submodule update
+    if test "$bashrc_include" == "$(tail -1 $bashrc)"; then echo; else
+        echo $bashrc_include >> $bashrc
+    fi
+
+    if [ $(type -p git) == '' ]; then 
+        echo 'Git not available, cannot install sub repositories properly.'
+    else
+        git submodule init
+        git submodule update
+        git submodule foreach git submodule init
+        git submodule foreach git submodule update
+    fi
 fi

@@ -22,9 +22,13 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-alias terminal='gnome-terminal &'
+if test $(type -p gnome-terminal) != '' ; then
+    alias terminal='gnome-terminal &'
+fi
 
-alias vi='vim -p'
+if test $(type -p vim) != '' ; then
+    alias vi='vim -p'
+fi
 
 # git aliases
 alias gc='git commit'

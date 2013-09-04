@@ -36,9 +36,6 @@ done
 
 bashrc_include='. ~/.bashrc.local'
 bashrc=~/.bashrc
-source_bashrc_local=""
-echo $source_bashrc_local
-
 if $is_uninstall; then
     if test "$bashrc_include" == "$(tail -1 $bashrc)"; then
         # delete the last line

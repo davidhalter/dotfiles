@@ -22,11 +22,11 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-if test $(type -p gnome-terminal) != '' ; then
+if test "$(type -p gnome-terminal)" == '' ; then
     alias terminal='gnome-terminal &'
 fi
 
-if test $(type -p vim) != '' ; then
+if test "$(type -p vim)" != '' ; then
     alias vi='vim -p'
 fi
 

@@ -22,7 +22,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-if test "$(type -p gnome-terminal)" == '' ; then
+if test "$(type -p gnome-terminal)" != '' ; then
     alias terminal='gnome-terminal &'
 fi
 

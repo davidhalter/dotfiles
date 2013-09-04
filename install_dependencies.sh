@@ -10,4 +10,10 @@ sudo aptitude install pep8
 # ctags is used for 
 sudo aptitude install exuberant-ctags
 
+# pip is used for all the python install stuff (and should be on every system
+# anyway)
+sudo aptitude install python-pip
+
+sudo pip install jedi
+
 #sudo pip install vimpdb # doesn't work without vim-server

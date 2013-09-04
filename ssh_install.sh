@@ -18,7 +18,7 @@ cd $(dirname $(readlink -f $0))
 
 ssh_server=$1
 
-ssh-copy-id $ssh_server
+ssh-copy-id $ssh_server || exit 1
 echo "Added public key to external server"
 
 # copy dotfiles

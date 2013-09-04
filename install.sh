@@ -46,7 +46,7 @@ else
         echo $bashrc_include >> $bashrc
     fi
 
-    if [ $(type -p git) == '' ]; then 
+    if test $(type -p git) == '' ; then 
         echo 'Git not available, cannot install sub repositories properly.'
     else
         git submodule init

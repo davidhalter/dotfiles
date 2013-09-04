@@ -22,7 +22,8 @@ ssh-copy-id $ssh_server
 echo "Added public key to external server"
 
 # copy dotfiles
-scp -r . $ssh_server":~/dotfiles/install.sh"
+ssh $ssh_server "mkdir ~/dotfiles"
+scp -r . $ssh_server":~/dotfiles"
 echo "Copied dotfiles"
 
 # install dotfiles

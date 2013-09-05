@@ -27,4 +27,4 @@
 	url = git://github.com/davidhalter/jedi.git
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
-	url = git://github.com/davidhalter/jedi-vim.git
+	url = https://github.com/davidhalter/jedi-vim.git

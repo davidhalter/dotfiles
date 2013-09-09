@@ -405,9 +405,8 @@ map <leader>td <Plug>TaskList
 " the gundo plugin
 nnoremap <leader>u :GundoToggle<CR>
 
-" the TagList Plugin
-let Tlist_Inc_Winwidth=0
-map <leader>l :TlistToggle<CR>
+" Tagbar plugin
+map <leader>l :TagbarToggle<CR>
 " updatetime is important, how often the tags are regenerated
 set updatetime=500 " in ms
 

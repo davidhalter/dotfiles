@@ -16,9 +16,6 @@
 [submodule ".vim/bundle/fugitive"]
 	path = .vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule ".vim/bundle/vim-taglist-plus"]
-	path = .vim/bundle/vim-taglist-plus
-	url = git://github.com/klen/vim-taglist-plus.git
 [submodule ".vim/bundle/w3m.vim"]
 	path = .vim/bundle/w3m.vim
 	url = git://github.com/yuratomo/w3m.vim
@@ -28,3 +25,6 @@
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule ".vim/bundle/tagbar"]
+	path = .vim/bundle/tagbar
+	url = git://github.com/majutsushi/tagbar

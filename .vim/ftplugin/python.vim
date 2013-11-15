@@ -8,10 +8,12 @@ if filereadable("~/.vim/ftplugin/vimpdb/VimPdb.vim")
 endif
 
 " Highlight everything possible for python
-let g:python_highlight_all=1 
+let g:python_highlight_all=1
 
-" Pyflakes should not use the quickfix window:
-let g:pyflakes_use_quickfix = 0
+" Don't annoy me about the 80 character width limit in python - is not even in
+" pep8 anymore.
+let g:syntastic_python_flake8_post_args='--ignore=E501'
+let g:syntastic_python_flake8_args='--ignore=E501'
 
 " ---------------------------------------------------------
 " Add the virtualenv's site-packages to vim path

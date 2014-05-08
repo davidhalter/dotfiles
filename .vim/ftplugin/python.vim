@@ -15,6 +15,9 @@ let g:python_highlight_all=1
 let g:syntastic_python_flake8_post_args='--ignore=E501'
 let g:syntastic_python_flake8_args='--ignore=E501'
 
+" Don't use pylint
+let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+
 " ---------------------------------------------------------
 " Add the virtualenv's site-packages to vim path
 if exists("g:python_did_virtualenv")

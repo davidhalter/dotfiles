@@ -68,6 +68,10 @@
 
 filetype off        " for some we have to disable it first
 
+if $GOROOT
+    set rtp+=$GOROOT/misc/vim
+endif
+
 " reset to vim-defaults
 if &compatible          " only if not set before:
     set nocompatible      " use vim-defaults instead of vi-defaults (easier, more user friendly)
@@ -382,6 +386,8 @@ if has("autocmd")
   autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
   autocmd FileType php set omnifunc=phpcomplete#CompletePHP
   autocmd FileType c set omnifunc=ccomplete#Complete
+
+  autocmd BufRead,BufNewFile *.go set filetype=go
 
   " smartindent:
   " When typing '#' as the first character in a new line, the indent for    

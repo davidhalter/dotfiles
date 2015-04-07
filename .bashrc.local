@@ -50,7 +50,9 @@ export EDITOR=vi
 export PYTHONSTARTUP="$(python -m jedi repl 2>/dev/null)"
 # py.test watch
 function pywatch() {
-    watch -n 1 --color sh -c $(echo "'"'py.test --color=yes '$@' | tail -n '$LINES"'")
+    # Substract the header lines of watch
+    l=$(expr $LINES - 2)
+    watch -n 1 --color sh -c $(echo "'"'py.test --color=yes '$@' | tail -n '$l"'")
 }
 
 # define console colors

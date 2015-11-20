@@ -17,3 +17,6 @@ let g:syntastic_python_flake8_args='--ignore=E501'
 
 " Don't use pylint
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']
+
+" Jedi settings
+let g:jedi#use_tabs_not_buffers = 1

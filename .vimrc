@@ -400,6 +400,8 @@ if has("autocmd")
   autocmd FileType python,php,vim inoremap # X#
 endif
 
+let g:jedi#goto_definitions_command = "<leader>t"
+
 " load pathogen plugins
 "call pathogen#runtime_append_all_bundles()
 call pathogen#infect('~/.vim/bundle')

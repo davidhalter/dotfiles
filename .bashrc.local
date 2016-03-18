@@ -132,3 +132,5 @@ On_IWhite='\e[0;107m'   # White
 # define prompt color
 # export PS1='\u@\h:\w\$ ' # default
 export PS1="\[$Cyan\]\u\[$Green\]@\h\[$Color_Off\]:\w\$ "
+
+alias mp3-dl="youtube-dl --extract-audio --audio-format mp3"

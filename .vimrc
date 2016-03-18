@@ -58,7 +58,7 @@
 "     > s saves
 "     > changed # and *, because that's more typical for a german keyboard layout
 "     > ä is able to input one character in normal mode and stay there
-"     > mapleader: ö
+"     > mapleader: \
 "
 " Important_addons:
 "   - folding with h possible, if you're at the first line.
@@ -90,8 +90,8 @@ set shiftwidth=4    " spaces for autoindents
 set expandtab       " turn a tabs into spaces
 set nu              " use line numbers
 set nowrap          " deactive wrapping
-set textwidth=79    " text automatically breaks after 79 chars
 set modeline        " enable modeline
+set textwidth=79    " text automatically breaks after 79 chars
 
 set ruler           " show cursor position in status bar
 set laststatus=2    " use 2 lines for the status bar (happens only when needed?)
@@ -206,7 +206,7 @@ noremap * #
 
 " mapleader ö on german/swiss keyboards, feel free to change that, to whatever
 " you like
-let mapleader="ö"
+let mapleader="\\"
 
 " insert one char, and still be in normal mode
 function! RepeatChar(char, count)

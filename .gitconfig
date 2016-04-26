@@ -2,6 +2,10 @@
 	name = Dave Halter
 	email = davidhalter88@gmail.com
 
+[diff]
+  renameLimit=200
+  renames=copies
+
 [color]
   diff=auto
   status=auto

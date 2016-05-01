@@ -1,6 +1,6 @@
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=4000
+HISTFILESIZE=8000
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then

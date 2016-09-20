@@ -17,9 +17,19 @@
 [core]
   editor = vim
   pager = less -+$LESS -RSX
+  #excludesfile =
+
+# Rembember resolved conflicts and solve them the same way.
+[rerere]
+    enabled = true
+    autoUpdate = true
 
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   #l = !a='git log --graph --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit --date=relative' && echo "Full Command: $a" && $a
 [push]
 	default = simple
+[fetch]
+    prune = true
+[merge]
+    conflictstyle = diff3

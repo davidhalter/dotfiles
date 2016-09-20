@@ -440,6 +440,7 @@ highlight Normal guifg=white guibg=black " ctermbg=black ctermfg=white
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")
   syntax on           " syntax-highlighting
+  syntax sync minlines=500  " Make highlighting a bit more precise.
   set hlsearch        " Highlight search terms (very useful!)
   set incsearch       " Show search matches while typing
 endif

@@ -123,10 +123,13 @@ if has('mouse')
     set mouse=v         " use mouse in visual mode (not normal,insert,command,help mode
 endif
 " set nobackup        " no backup~ files.
+set noswapfile     " no swap files; I have tried and never used them for years.
 
 set wildmode=longest:full
 set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn " ignore this files, for completion
 set wildmenu              "a better menu, for opening files
+
+set tabpagemax=100  " VIM should open all given options when using -p
 
 " --------------------------------------------------------------------------
 " Folding

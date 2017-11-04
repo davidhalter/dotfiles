@@ -404,6 +404,8 @@ if has("autocmd")
 endif
 
 let g:jedi#goto_definitions_command = "<leader>t"
+"let g:jedi#show_call_signatures = 0
+"let g:jedi#popup_on_dot = 0
 
 " load pathogen plugins
 "call pathogen#runtime_append_all_bundles()
@@ -412,6 +414,7 @@ call pathogen#helptags()
 
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 
+"execute jedi#enable_debugging()
 
 " the gundo plugin
 nnoremap <leader>u :GundoToggle<CR>
@@ -430,6 +433,10 @@ let g:snipMateAllowMatchingDot = 0
 let g:w3m#search_engine = "https://www.google.com/search?q="
 map <leader>w :W3mTab 
 
+" Remove the supertab mappings of c-n and c-p. We don't want them, because it's
+" practically otherwise.
+autocmd VimEnter * iunmap <c-n>
+autocmd VimEnter * iunmap <c-p>
 
 " --------------------------------------------------------------------------
 " Highlighting stuff

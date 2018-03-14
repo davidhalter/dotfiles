@@ -375,6 +375,9 @@ let is_bash=1           " Default to bash for sh syntax
 "html/xml
 set matchpairs+=<:>     " specially for html
 
+" VIM started introducing weird characters
+let g:pyindent_open_paren = '&sw'
+let g:pyindent_continue = '&sw'
 
 set omnifunc=syntaxcomplete#Complete " set a basic complete function
 if has("autocmd")

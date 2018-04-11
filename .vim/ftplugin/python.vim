@@ -10,10 +10,10 @@ endif
 " Highlight everything possible for python
 let g:python_highlight_all=1
 
-" Don't annoy me about the 80 character width limit in python - is not even in
-" pep8 anymore.
-let g:syntastic_python_flake8_post_args='--ignore=E501'
-let g:syntastic_python_flake8_args='--ignore=E501'
+" E501: Lines can be 80 characters long (see PEP8).
+" W503: Line breaks before binary operators are fine.
+" See also https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes
+let g:syntastic_python_flake8_args='--ignore=E501,W503'
 
 " Don't use pylint
 let g:syntastic_python_checkers = ['flake8', 'pyflakes']

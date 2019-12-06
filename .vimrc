@@ -407,6 +407,7 @@ if has("autocmd")
 endif
 
 let g:jedi#goto_definitions_command = "<leader>t"
+let g:jedi#smart_auto_mappings = 1
 "let g:jedi#show_call_signatures = 0
 "let g:jedi#popup_on_dot = 0
 

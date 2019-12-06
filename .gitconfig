@@ -33,3 +33,5 @@
     prune = true
 [merge]
     conflictstyle = diff3
+[rebase]
+    autosquash=true

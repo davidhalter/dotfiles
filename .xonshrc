@@ -1,0 +1,35 @@
+$VI_MODE = True
+xontrib load jedi
+
+aliases['gc'] = 'git commit'
+aliases['gca'] = 'git commit -a'
+aliases['gcam'] = 'git commit -a -m'
+aliases['gl'] = 'git log'
+# gs is sometimes used because of 'Ghostscript', but overwrite it anyway
+aliases['gs'] = 'git status'
+aliases['gd'] = 'git diff'
+aliases['ga'] = 'git add'
+aliases['gu'] = 'git push'
+aliases['gp'] = 'git pull'
+aliases['gb'] = 'git branch'
+
+
+@events.on_ptk_create
+def custom_keybindings(bindings, **kw):
+    from prompt_toolkit.filters.app import vi_insert_mode
+    from prompt_toolkit.key_binding.vi_state import InputMode
+
+    handle = bindings.add
+
+    @handle('j', 'k', filter=vi_insert_mode)
+    def _(event):
+        """
+        Just copy the implementation of prompt_toolkit.key_binding.bindings.vi
+        """
+        buffer = event.current_buffer
+        vi_state = event.app.vi_state
+
+        if vi_state.input_mode in (InputMode.INSERT, InputMode.REPLACE):
+            buffer.cursor_position += buffer.document.get_cursor_left_position()
+
+        vi_state.input_mode = InputMode.NAVIGATION

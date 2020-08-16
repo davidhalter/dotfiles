@@ -20,3 +20,5 @@ let g:syntastic_python_checkers = ['flake8', 'pyflakes']
 
 " Jedi settings
 let g:jedi#use_tabs_not_buffers = 1
+
+"python3 import parso; parso.python.diff.DEBUG_DIFF_PARSER = True

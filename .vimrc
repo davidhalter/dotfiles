@@ -411,6 +411,16 @@ let g:jedi#smart_auto_mappings = 1
 "let g:jedi#show_call_signatures = 0
 "let g:jedi#popup_on_dot = 0
 
+call plug#begin()
+Plug 'ervandew/supertab'
+Plug 'davidhalter/jedi-vim'
+Plug 'dense-analysis/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-fugitive'
+call plug#end()
+
+CocInstall coc-rust-analyzer
+
 " load pathogen plugins
 "call pathogen#runtime_append_all_bundles()
 call pathogen#infect('~/.vim/bundle')

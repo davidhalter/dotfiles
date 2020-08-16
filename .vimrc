@@ -419,12 +419,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
-CocInstall coc-rust-analyzer
-
-" load pathogen plugins
-"call pathogen#runtime_append_all_bundles()
-call pathogen#infect('~/.vim/bundle')
-call pathogen#helptags()
+" CocInstall coc-rust-analyzer
 
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 
@@ -449,8 +444,8 @@ map <leader>w :W3mTab
 
 " Remove the supertab mappings of c-n and c-p. We don't want them, because it's
 " practically otherwise.
-autocmd VimEnter * iunmap <c-n>
-autocmd VimEnter * iunmap <c-p>
+"autocmd VimEnter * iunmap <c-n>
+"autocmd VimEnter * iunmap <c-p>
 
 " --------------------------------------------------------------------------
 " Highlighting stuff
@@ -501,11 +496,21 @@ set statusline+=%r                                 " readonly?
 set statusline+=%w                                 " ?
 set statusline+=%y                                 " filetype
 
-if filereadable($HOME.'/.vim/bundle/syntastic/plugin/syntastic.vim')
-  " syntax checking with syntastic
-  let g:syntastic_check_on_open=1
-  " set statusline+=%#warningmsg#                    " switch to warning highlight
-  set statusline+=%2*%{SyntasticStatuslineFlag()}    " syntastic warnings -> compiler warnings
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+if filereadable($HOME.'/.vim/plug/ale/plugin/ale.vim')
+  set statusline+=%2*%{LinterStatus()}    " syntastic warnings -> compiler warnings
 endif
 
 set statusline+=%1*                                " switch to different color

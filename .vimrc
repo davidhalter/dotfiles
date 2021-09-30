@@ -413,13 +413,59 @@ let g:jedi#smart_auto_mappings = 1
 
 call plug#begin()
 Plug 'ervandew/supertab'
-Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim', { 'branch': 'master' }
 Plug 'dense-analysis/ale'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh',}
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
+let g:LanguageClient_serverCommands = {
+    \ 'go': {
+    \   'name': 'gopls',
+    \   'command': ['gopls'],
+    \   'initializationOptions': {
+    \     'usePlaceholders': v:true,
+    \     'codelens': {
+    \       'generate': v:true,
+    \       'test': v:true,
+    \     },
+    \   },
+    \ },
+    \} 
+
+nmap <silent>K <Plug>(lcn-hover)
+nmap <silent>gd <Plug>(lcn-definition)
+nmap <silent>gs <Plug>(lcn-type-definition)
+nmap <silent>gi <Plug>(lcn-implementation)
+nmap <silent>gr <Plug>(lcn-references)
+nmap <silent>gm <Plug>(lcn-menu)
+nmap <silent>gf <Plug>(lcn-format-sync)
+nmap <silent>gn <Plug>(lcn-diagnostics-next)
+nmap <silent>gp <Plug>(lcn-diagnostics-prev)
+nmap <silent>ge <Plug>(lcn-explain-error)
+nmap <silent>ga <Plug>(lcn-code-action)
+
+" function! s:show_documentation()
+"  if (index(['vim','help'], &filetype) >= 0)
+"    execute 'h '.expand('<cword>')
+"  else
+"    call CocAction('doHover')
+"  endif
+"endfunction
+
 " CocInstall coc-rust-analyzer
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window.
+" autocmd FileType rust nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Symbol renaming.
+" autocmd FileType rust nmap <leader>rn CoCAction('rename')
+" Formatting selected code.
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
 
 " the TaskList Plugin
 map <leader>td <Plug>TaskList 
@@ -512,6 +558,11 @@ endfunction
 if filereadable($HOME.'/.vim/plug/ale/plugin/ale.vim')
   set statusline+=%2*%{LinterStatus()}    " syntastic warnings -> compiler warnings
 endif
+
+let g:ale_linters = {
+\    'python': ['flake8']
+\}
+let g:ale_rust_cargo_use_clippy = 1
 
 set statusline+=%1*                                " switch to different color
 " formating the time: http://vim.wikia.com/wiki/Writing_a_valid_statusline

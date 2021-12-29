@@ -35,3 +35,5 @@
     conflictstyle = diff3
 [rebase]
     autosquash=true
+[stash]
+    showpatch=true

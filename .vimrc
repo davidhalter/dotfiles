@@ -394,6 +394,7 @@ if has("autocmd")
   autocmd FileType c set omnifunc=ccomplete#Complete
 
   autocmd BufRead,BufNewFile *.go set filetype=go
+  autocmd BufNew,BufNewFile,BufRead *.tsx,*.ts set filetype=javascript | ALEDisable
 
   " smartindent:
   " When typing '#' as the first character in a new line, the indent for    
@@ -420,6 +421,7 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['~/node_modules/.bin/typescript-language-server', '--stdio'],
     \ 'go': {
     \   'name': 'gopls',
     \   'command': ['gopls'],
@@ -432,6 +434,13 @@ let g:LanguageClient_serverCommands = {
     \   },
     \ },
     \} 
+
+let g:LanguageClient_rootMarkers = {
+\ 'javascript.tsx': ['tsconfig.json'],
+\ 'javascript.ts': ['tsconfig.json'],
+\ 'javascript.jsx': ['tsconfig.json'],
+\ 'javascript.js': ['tsconfig.json'],
+\ }
 
 nmap <silent>K <Plug>(lcn-hover)
 nmap <silent>gd <Plug>(lcn-definition)

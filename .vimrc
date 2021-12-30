@@ -1,62 +1,5 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: David Halter <davidhalter88@gmail.com>
-"
-" Plugins_included:
-"     > fugitive - http://github.com/tpope/vim-fugitive
-"       provides a great interface for interacting with git (blame, etc9)
-"       KEY: see help files
-"           info -> :help fugitive
-"
-"     > supertab - https://github.com/ervandew/supertab
-"           makes <Tab> an autocompletion feature
-"           info -> :help supertab
-"
-"     > syntastic - https://github.com/scrooloose/syntastic
-"       highlights things that are not syntactically correct
-"       in many different languages
-"       TODO: add support for immedate changes, not just on save/open
-"       TODO: add support for red highlighting, like the pyflakes plugin
-"           info -> :help pytest
-"
-"     > TaskList.vim - https://github.com/vim-scripts/TaskList.vim
-"       A tasklist window, that lists all TOD0s in the code and so on.
-"       Key: <leader>td
-"           info -> there seems to be no help arround
-"
-"     > taglist-plus - https://github.com/klen/vim-taglist-plus
-"       A taglist window, which works for many languages, using exuberant tags
-"       Key: <leader>l
-"           info -> :help taglist-plus
-"
-"     > gundo.vim - https://github.com/sjl/gundo.vim
-"       Used to look at the history of your saves and restore something
-"       Key: <leader>u
-"           info -> :help gundo
-"
-" Python_specific_plugins:
-"     > pep8 - https://github.com/vim-scripts/pep8
-"       checks a pyhton file for pep8 compatibility
-"       Key: <leader>t* -> see the definitions
-"           info -> cannot find the help files
-"
-"
-" Important_keyboard_changes: -> orderer by importance
-"   I changed many things, those are just the important ones, which you should
-"   really know. In my opinion it is important, that the more used commands
-"   have easier shortcuts. Therefore I switched some commands, like the marks.
-"     > mapped jk to <ESC> in normal mode [I really like fast escapes]
-"     > changed ; and , [more comfortable]
-"     > changed m and ' [to use marks it should be fast available, m is faster]
-"     > changed q and @ [again: faster]
-"     > s saves
-"     > changed # and *, because that's more typical for a german keyboard layout
-"     > ä is able to input one character in normal mode and stay there
-"     > mapleader: \
-"
-" Important_addons:
-"   - folding with h possible, if you're at the first line.
-"   - tabbing is very powerfull, with snippets and autocompletion
-"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype off        " for some we have to disable it first
@@ -305,18 +248,6 @@ nmap <silent>ga <Plug>(lcn-code-action)
 " xmap <leader>f  <Plug>(coc-format-selected)
 " nmap <leader>f  <Plug>(coc-format-selected)
 
-
-" the TaskList Plugin
-map <leader>td <Plug>TaskList 
-"execute jedi#enable_debugging()
-
-" the gundo plugin
-nnoremap <leader>u :GundoToggle<CR>
-
-" Tagbar plugin
-map <leader>l :TagbarToggle<CR>
-" updatetime is important, how often the tags are regenerated
-set updatetime=500 " in ms
 
 " snipmate wants that (for some snippets)
 let g:snips_author = 'David Halter'

@@ -138,12 +138,10 @@ endif
 " User commands
 " --------------------------------------------------------------------------
 
-" Tabs wechseln
+" Switch tabs
 map <C-n> gt
 map <C-p> gT
 map <C-t> :tabnew<Space>
-" Indent
-"map <C-i> 0i<Tab><Esc>
 
 " faster scrolling with control
 map <C-j> 5j
@@ -151,43 +149,15 @@ map <C-k> 5k
 map <C-l> 5l
 map <C-h> 5h
 
-" love that ESC is now central in the keyboard
+" I love that ESC is now central in the keyboard
 imap jk <ESC>
-
-" change behaviour of , and ; because its much more intuitive
-noremap , ;
-noremap ; ,
-
-" marks are very tedious to get to, so just change the command
-noremap ' m
-noremap m '
-
-" the same is also true for makros.
-noremap q @
-noremap @ q
 
 " Y should have the same behaviour like D, but instead Y is the same as yy, fix this:
 map Y y$
 
-" jump to next row in editor instead of next line
+" Jump to next row in editor instead of next line
 noremap j gj
 noremap k gk
-
-" for german keyboard layout better
-noremap # *
-noremap * #
-
-" mapleader ö on german/swiss keyboards, feel free to change that, to whatever
-" you like
-let mapleader="\\"
-
-" insert one char, and still be in normal mode
-function! RepeatChar(char, count)
-  return repeat(a:char, a:count)
-endfunction
-nnoremap ä :<C-U>exec "normal i".RepeatChar(nr2char(getchar()), v:count1)<CR>
-nnoremap Ä :<C-U>exec "normal a".RepeatChar(nr2char(getchar()), v:count1)<CR>
-
 
 " execute stuff
 let s:execution_counter = 4       " start with <F4> as mappings

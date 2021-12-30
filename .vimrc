@@ -325,17 +325,3 @@ endif
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
-
-" --------------------------------------------------------------------------
-" gVim / desktop stuff - should work for MacVim, too
-" --------------------------------------------------------------------------
-
-if has("ballooneval") " only available in gvim
-  set ballooneval   " balloons are little hover menus
-endif
-
-" opens a tab for every new buffer and switches to the right ones
-if has("switchbuf")
-    set switchbuf=usetab,newtab
-endif
-

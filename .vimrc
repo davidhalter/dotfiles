@@ -227,20 +227,6 @@ nmap <silent>gp <Plug>(lcn-diagnostics-prev)
 nmap <silent>ge <Plug>(lcn-explain-error)
 nmap <silent>ga <Plug>(lcn-code-action)
 
-" snipmate wants that (for some snippets)
-let g:snips_author = 'David Halter'
-" the dot should not match, otherwise it results in very strange bugs in python
-let g:snipMateAllowMatchingDot = 0
-
-" w3m plugin
-let g:w3m#search_engine = "https://www.google.com/search?q="
-map <leader>w :W3mTab 
-
-" Remove the supertab mappings of c-n and c-p. We don't want them, because it's
-" practically otherwise.
-"autocmd VimEnter * iunmap <c-n>
-"autocmd VimEnter * iunmap <c-p>
-
 " --------------------------------------------------------------------------
 " Highlighting stuff
 " --------------------------------------------------------------------------
@@ -248,7 +234,6 @@ map <leader>w :W3mTab
 " basic color scheme
 set background=dark
 highlight Normal guifg=white guibg=black " ctermbg=black ctermfg=white
-" let g:colors_name = "dave" " my very own color scheme
 
 " color settings (if terminal/gui supports it)
 if &t_Co > 2 || has("gui_running")

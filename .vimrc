@@ -227,28 +227,6 @@ nmap <silent>gp <Plug>(lcn-diagnostics-prev)
 nmap <silent>ge <Plug>(lcn-explain-error)
 nmap <silent>ga <Plug>(lcn-code-action)
 
-" function! s:show_documentation()
-"  if (index(['vim','help'], &filetype) >= 0)
-"    execute 'h '.expand('<cword>')
-"  else
-"    call CocAction('doHover')
-"  endif
-"endfunction
-
-" CocInstall coc-rust-analyzer
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-" Use K to show documentation in preview window.
-" autocmd FileType rust nnoremap <silent> K :call <SID>show_documentation()<CR>
-" Symbol renaming.
-" autocmd FileType rust nmap <leader>rn CoCAction('rename')
-" Formatting selected code.
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-
-
 " snipmate wants that (for some snippets)
 let g:snips_author = 'David Halter'
 " the dot should not match, otherwise it results in very strange bugs in python

@@ -248,12 +248,6 @@ imap <F5> <ESC><F5>
 imap <F4> <ESC><F4>
 set pastetoggle=<F2>
 
-" aliase setzen
-command! Q      q
-command! W      w
-command! Wq     wq
-command! WQ     wq
-
 " Sudo write
 if executable('sudo') && executable('tee')
   command! SUwrite
@@ -264,18 +258,6 @@ cmap w!! SUwrite
 
 " I don't use s much, so use it save, i use that a lot more.
 map s :w<CR>
-
-" Auto-reload vimrc on save
-if has("autocmd")
-  " is to slow!
-  " autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
-" quickly edit the python settings
-map <leader>vp :tabnew ~/.vim/ftplugin/python.vim<cr>
-
-map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
-map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
 " --------------------------------------------------------------------------
 " Plugins settings

@@ -33,13 +33,6 @@
 "       Key: <leader>u
 "           info -> :help gundo
 "
-"     > w3m.vim - https://github.com/yuratomo/w3m.vim
-"       Text based browsing in vim.
-"       w3m must be installed, but it is shipped with most Linux distros.
-"       Key: :W3m
-"       Key: <leader>w
-"
-"
 " Python_specific_plugins:
 "     > pep8 - https://github.com/vim-scripts/pep8
 "       checks a pyhton file for pep8 compatibility
@@ -285,27 +278,9 @@ map <leader>vv :tabnew ~/.vimrc<cr>        " quickly edit this file
 map <leader>vs :source ~/.vimrc<cr>        " quickly source this file
 
 " --------------------------------------------------------------------------
-" Plugins enable/disable
-" --------------------------------------------------------------------------
-
-" don't load/start minibufexplorer now, because he's not able to color properly
-let g:loaded_minibufexplorer = 1
-if !executable('w3m')
-  let g:loaded_w3m = 1
-endif
-
-" --------------------------------------------------------------------------
 " Plugins settings
 " --------------------------------------------------------------------------
-
-" minibufexplorer (MBE) config
-" always display syntax in minibufexpl
-let g:miniBufExplForceSyntaxEnable = 1
-" for other explorers like TagList
-let g:miniBufExplModSelTarget = 1
-" omit the buffer number from MBE's buffer display
-"let g:miniBufExplShowBufNumbers = 0
-" an empty status line instead of "-MiniBufExplorer-"
+"
 let g:statusLineText = ""
 
 " colors for MBE
@@ -315,14 +290,6 @@ hi MBEVisibleNormal term=bold cterm=bold gui=bold guibg=Gray guifg=Black ctermbg
 " buffers that have CHANGED and are VISIBLE
 hi MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black
 hi MBENormal ctermfg=cyan
-
-" MBE mappings
-" FIXME mbe keys are always being loaded - only load them if MBE is loaded
-if g:loaded_minibufexplorer == 0
-  nnoremap gt :MBEbn<CR>
-  nnoremap gT :MBEbp<CR>
-endif
-
 
 " for the pep8 plugin verifications, must be set before the plugin is loaded
 let g:pep8_map='<leader>8'

@@ -535,7 +535,7 @@ endif
 if has('title') && (has('gui_running') || &title)
   set titlestring=
   set titlestring+=%F " File name
-  set titlestring+=\ -\ Dave's\ VIM " %{v:progname} " Program name
+  set titlestring+=\ -\ VIM " %{v:progname} " Program name
 endif
 
 " Always jump to the last known cursor position. 

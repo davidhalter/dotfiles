@@ -116,8 +116,6 @@ map s :w<CR>
 " --------------------------------------------------------------------------
 " Plugins settings
 " --------------------------------------------------------------------------
-"
-let g:statusLineText = ""
 
 " colors for MBE
 "hi MBENormal term=bold,reverse cterm=bold,reverse gui=bold,reverse ctermbg=yellow ctermfg=white guibg=yellow guifg=white
@@ -127,20 +125,14 @@ hi MBEVisibleNormal term=bold cterm=bold gui=bold guibg=Gray guifg=Black ctermbg
 hi MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black
 hi MBENormal ctermfg=cyan
 
-" for the pep8 plugin verifications, must be set before the plugin is loaded
-let g:pep8_map='<leader>8'
-
 " definition of the completion field
 set completeopt=menuone,longest,preview
 
 " code completion SuperTab config
 let g:SuperTabDefaultCompletionType = "context"
-" instead of <c-p> as completion, which is backwards
-" let g:SuperTabContextDefaultCompletionType = "<c-n>"
 " use always c-x c-o -> not c-n
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:SuperTabLongestEnhanced = 1
-" let g:SuperTabLongestHighlight = 1
 
 " --------------------------------------------------------------------------
 " Language settings (setting it late is important)
@@ -182,8 +174,6 @@ endif
 
 let g:jedi#goto_definitions_command = "<leader>t"
 let g:jedi#smart_auto_mappings = 1
-"let g:jedi#show_call_signatures = 0
-"let g:jedi#popup_on_dot = 0
 
 call plug#begin()
 Plug 'ervandew/supertab'

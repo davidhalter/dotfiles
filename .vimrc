@@ -383,6 +383,8 @@ set omnifunc=syntaxcomplete#Complete " set a basic complete function
 if has("autocmd")
   filetype plugin on
   autocmd FileType html setlocal nosmartindent 
+  " The ftplugin sometimes overwrites it
+  autocmd FileType javascript set omnifunc=LanguageClient#complete
 
   autocmd BufRead,BufNewFile *.go set filetype=go
   autocmd BufNew,BufNewFile,BufRead *.tsx,*.ts set filetype=javascript | ALEDisable

@@ -159,66 +159,7 @@ map Y y$
 noremap j gj
 noremap k gk
 
-" execute stuff
-let s:execution_counter = 4       " start with <F4> as mappings
-function! SetExecute()
-  let cur_file = expand("%")
-  let perm = getfperm(cur_file)
-
-  if perm[2] == 'x' || perm[5] == 'x' ||  perm[8] == 'x'
-    " this means it is an execution, therefore just execute
-    let str = '!./'.cur_file
-  else
-    " no execution - try to do it differently
-    if &filetype == 'python'
-      if stridx(cur_file, 'test_') == 0
-        let str = '!py.test '.cur_file
-      else
-        let str = '!python '.cur_file
-      end
-    elseif &filetype == 'php'
-      let str = '!php '.cur_file
-    elseif &filetype == 'vim'
-      let str = 'source '.cur_file
-    elseif &filetype == 'sh'
-      let str = '!sh '.cur_file
-    elseif &filetype == 'c' || &filetype == 'cpp'
-      let without_ft = substitute(cur_file, '\v\.(cc|cpp|h|c)', '', '')
-      let str = '!make && ./'.without_ft
-    else
-      let str = cur_file
-    endif
-  endif
-  let full = ':map <F'.s:execution_counter.'> :w<Enter> :'.str.'<Enter>'
-  echohl WarningMsg " we like to have a red warning
-  call inputsave()
-  let full_ack = input('add execution: ', full, 'file')
-  call inputrestore()
-  echohl None
-
-  exec full_ack
-
-  " handle execution_counter (which F__ Key is called)
-  let s:execution_counter += 1
-  if s:execution_counter > 11 " reset counter if too high, but this shouldn't happen...
-    let s:execution_counter = 3
-  endif
-
-endfunction
-
-map <F12> :call SetExecute()<CR>
-imap <F12> <ESC><F12>
-imap <F11> <ESC><F11>
-imap <F10> <ESC><F10>
-imap <F9> <ESC><F9>
-imap <F8> <ESC><F8>
-imap <F7> <ESC><F7>
-imap <F6> <ESC><F6>
-imap <F5> <ESC><F5>
-imap <F4> <ESC><F4>
-set pastetoggle=<F2>
-
-" Sudo write
+" Sudo write with :w!!
 if executable('sudo') && executable('tee')
   command! SUwrite
         \ execute 'w !sudo tee % > /dev/null' |

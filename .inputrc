@@ -18,3 +18,5 @@ set completion-ignore-case on
 set completion-prefix-display-length 2
 set show-all-if-ambiguous on
 set show-all-if-unmodified on
+set colored-stats on
+set colored-completion-prefix on

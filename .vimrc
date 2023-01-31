@@ -66,6 +66,8 @@ set wildignore=*.o,*.obj,*.bak,*.exe,*.py[co],*.swp,*~,*.pyc,.svn " ignore this 
 set wildmenu              "a better menu, for opening files
 
 set tabpagemax=100  " VIM should open all given options when using -p
+set belloff=all
+
 
 " --------------------------------------------------------------------------
 " Folding

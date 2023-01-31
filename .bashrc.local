@@ -135,3 +135,15 @@ export PS1="\[$Cyan\]\u\[$Green\]@\h\[$Color_Off\]:\w\$ "
 
 alias mp3-dl="youtube-dl --extract-audio --audio-format mp3"
 alias wetter="curl wttr.in/Zurich"
+
+tomp3 ()
+{
+    ffmpeg -i "$1" -vn -ar 44100 -ac 2 -b:a 192k "$(basename "$1" .wav)".mp3
+}
+
+mp3toogg ()
+{
+    ffmpeg -i "$1" -c:a libvorbis -q:a 4 "$(basename "$1" .mp3)".ogg
+}
+
+export PYTHONSTARTUP=$HOME/.pythonrc.py

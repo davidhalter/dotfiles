@@ -5,6 +5,7 @@
 [diff]
   renameLimit=200
   renames=copies
+  submodule=log
 
 [color]
   diff=auto
@@ -37,3 +38,5 @@
     autosquash=true
 [stash]
     showpatch=true
+[status]
+    submoduleSummary=true

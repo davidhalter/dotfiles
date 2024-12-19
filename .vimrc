@@ -159,9 +159,14 @@ if has("autocmd")
   autocmd FileType html setlocal nosmartindent 
   " The ftplugin sometimes overwrites it
   autocmd FileType javascript set omnifunc=LanguageClient#complete
+  autocmd FileType rust set omnifunc=LanguageClient#complete | set completeopt=menuone,longest
+  autocmd FileType go set omnifunc=LanguageClient#complete
 
   autocmd BufRead,BufNewFile *.go set filetype=go
   autocmd BufNew,BufNewFile,BufRead *.tsx,*.ts set filetype=javascript | ALEDisable
+  autocmd BufNew,BufNewFile,BufRead *.rs ALEDisable
+  autocmd BufNew,BufNewFile,BufRead *.rs ALEDisable
+  autocmd BufWritePre *rs call clearmatches()
 
   " smartindent:
   " When typing '#' as the first character in a new line, the indent for    
@@ -181,11 +186,20 @@ call plug#begin()
 Plug 'ervandew/supertab'
 Plug 'davidhalter/jedi-vim', { 'branch': 'master' }
 Plug 'dense-analysis/ale'
-Plug 'autozimu/LanguageClient-neovim', {'branch': 'next', 'do': 'bash install.sh',}
+Plug 'prabirshrestha/vim-lsp'
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:LanguageClient_serverCommands = {
+    \ 'rust': {
+    \   'name': 'rust-analyzer',
+    \   'command': ['rust-analyzer'],
+    \   'initializationOptions': {
+    \     'checkOnSave': {
+    \       'command': 'clippy',
+    \     },
+    \   },
+    \ },
     \ 'javascript': ['~/node_modules/.bin/typescript-language-server', '--stdio'],
     \ 'go': {
     \   'name': 'gopls',
@@ -200,18 +214,12 @@ let g:LanguageClient_serverCommands = {
     \ },
     \} 
 
-let g:LanguageClient_rootMarkers = {
-\ 'javascript.tsx': ['tsconfig.json'],
-\ 'javascript.ts': ['tsconfig.json'],
-\ 'javascript.jsx': ['tsconfig.json'],
-\ 'javascript.js': ['tsconfig.json'],
-\ }
-
 nmap <silent>K <Plug>(lcn-hover)
 nmap <silent>gd <Plug>(lcn-definition)
 nmap <silent>gs <Plug>(lcn-type-definition)
 nmap <silent>gi <Plug>(lcn-implementation)
 nmap <silent>gr <Plug>(lcn-references)
+nmap <silent>gR <Plug>(lcn-rename)
 nmap <silent>gm <Plug>(lcn-menu)
 nmap <silent>gf <Plug>(lcn-format-sync)
 nmap <silent>gn <Plug>(lcn-diagnostics-next)
@@ -327,3 +335,12 @@ endif
 
 set cul                                           " highlight current line
 hi CursorLine term=none cterm=none ctermbg=0      " adjust color
+
+function! WordWithDashUnderCursor() abort
+    return matchstr(expand("<cWORD>"), '\(\w\|-\)*')
+endfunction
+
+map <F2> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --features zuban_debug --message-format short"<CR>
+map <F3> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
+map <F4> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 \| tail -n 200"<CR>
+map <F5> :execute "!rg -U '(?s)case ".WordWithDashUnderCursor()."\\].*?(\\[case\|\\z)'"<CR>

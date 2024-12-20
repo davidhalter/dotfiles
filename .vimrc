@@ -189,8 +189,6 @@ call plug#end()
 
 let g:lsp_diagnostics_echo_cursor = 1
 
-nmap <silent>ga <Plug>(lcn-code-action)
-
 if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
         \ 'name': 'rust-analyzer',
@@ -215,6 +213,7 @@ function! s:on_lsp_buffer_enabled() abort
     nmap <buffer> gR <plug>(lsp-rename)
     nmap <buffer> gn <plug>(lsp-previous-diagnostic)
     nmap <buffer> gp <plug>(lsp-next-diagnostic)
+    nmap <buffer> ga <plug>(lsp-code-action)
     nmap <buffer> K <plug>(lsp-hover)
     "nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     "nnoremap <buffer> <expr><c-d> lsp#scroll(-4)

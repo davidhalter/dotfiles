@@ -128,7 +128,7 @@ hi MBEVisibleChanged term=bold cterm=bold gui=bold guibg=DarkRed guifg=Black
 hi MBENormal ctermfg=cyan
 
 " definition of the completion field
-set completeopt=menuone,longest,preview
+set completeopt=menuone,longest,preview,noselect
 
 " code completion SuperTab config
 let g:SuperTabDefaultCompletionType = "context"

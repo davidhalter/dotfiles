@@ -188,6 +188,8 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 
 let g:lsp_diagnostics_echo_cursor = 1
+"let g:lsp_log_file = 1
+"let g:lsp_show_message_log_level = "log"
 
 if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
@@ -195,7 +197,7 @@ if executable('rust-analyzer')
         \ 'cmd': {server_info->['rust-analyzer']},
         \ 'allowlist': ['rust'],
         \ 'initialization_options': {
-        \     'checkOnSave': {'command': 'clippy'},
+        "\     'checkOnSave': {'command': 'clippy'},
         \   },
         \ })
 endif
@@ -253,6 +255,8 @@ else
   au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
+" This felt annoying
+autocmd FileType rust highlight rustInvalidBareKeyword ctermfg=NONE guifg=NONE
 
 " user defined colors -> used for the status bar
 
@@ -347,3 +351,5 @@ map <F2> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --features z
 map <F3> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
 map <F4> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 \| tail -n 200"<CR>
 map <F5> :execute "!rg -U '(?s)case ".WordWithDashUnderCursor()."\\].*?(\\[case\|\\z)'"<CR>
+map <F6> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --message-format short"<CR>
+map <F7> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test -- 2>&1"<CR>

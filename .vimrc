@@ -148,6 +148,7 @@ let is_bash=1           " Default to bash for sh syntax
 
 "html/xml
 set matchpairs+=<:>     " specially for html
+autocmd BufRead,BufNewFile *.htm,*.html,*.css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 " VIM started introducing weird characters
 let g:pyindent_open_paren = '&sw'
@@ -202,21 +203,31 @@ if executable('rust-analyzer')
         \ })
 endif
 
+if executable('zubanls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'ZubanLS',
+        \ 'cmd': ['zubanls'],
+        \ 'allowlist': ['python'],
+        \ })
+endif
+
 function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
+    if &filetype != "python"
+        setlocal omnifunc=lsp#complete
+        nmap <buffer> gd <plug>(lsp-definition)
+        nmap <buffer> gs <plug>(lsp-document-symbol-search)
+        nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+        nmap <buffer> gr <plug>(lsp-references)
+        nmap <buffer> gi <plug>(lsp-implementation)
+        nmap <buffer> gs <plug>(lsp-type-definition)
+        nmap <buffer> gR <plug>(lsp-rename)
+        nmap <buffer> K <plug>(lsp-hover)
+    endif
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gs <plug>(lsp-type-definition)
-    nmap <buffer> gR <plug>(lsp-rename)
-    nmap <buffer> gn <plug>(lsp-previous-diagnostic)
-    nmap <buffer> gp <plug>(lsp-next-diagnostic)
+    nmap <buffer> gn <plug>(lsp-next-diagnostic)
+    nmap <buffer> gp <plug>(lsp-previous-diagnostic)
     nmap <buffer> ga <plug>(lsp-code-action)
-    nmap <buffer> K <plug>(lsp-hover)
     "nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
     "nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 
@@ -225,6 +236,9 @@ function! s:on_lsp_buffer_enabled() abort
 
     " refer to doc to add more commands
 endfunction
+
+let g:lsp_diagnostics_virtual_text_enabled = 0
+let g:lsp_diagnostics_float_cursor = 1
 
 augroup lsp_install
     au!
@@ -341,15 +355,20 @@ if has("autocmd")
 endif
 
 set cul                                           " highlight current line
-hi CursorLine term=none cterm=none ctermbg=0      " adjust color
+hi CursorLine term=none cterm=none ctermbg=darkgray      " adjust color
 
 function! WordWithDashUnderCursor() abort
     return matchstr(expand("<cWORD>"), '\(\w\|-\)*')
 endfunction
 
+map qn :cn<CR>
+map qp :cp<CR>
+map Q  :echo "Ex mode was disabled, because I don't want to enter it accidentally"<CR>
+
 map <F2> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --features zuban_debug --message-format short"<CR>
 map <F3> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
 map <F4> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 \| tail -n 200"<CR>
 map <F5> :execute "!rg -U '(?s)case ".WordWithDashUnderCursor()."\\].*?(\\[case\|\\z)'"<CR>
-map <F6> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --message-format short"<CR>
-map <F7> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test -- 2>&1"<CR>
+map <F6> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target RUST_BACKTRACE=1 cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
+map <F7> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --message-format short"<CR>
+map <F8> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test -- 2>&1"<CR>

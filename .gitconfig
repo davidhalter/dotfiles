@@ -6,6 +6,7 @@
   renameLimit=200
   renames=copies
   submodule=log
+  tool=vimdiff
 
 [color]
   diff=auto

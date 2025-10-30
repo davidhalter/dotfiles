@@ -161,7 +161,7 @@ if has("autocmd")
   " The ftplugin sometimes overwrites it
 
   autocmd BufRead,BufNewFile *.go set filetype=go
-  autocmd BufNew,BufNewFile,BufRead *.tsx,*.ts set filetype=javascript | ALEDisable
+  autocmd BufNew,BufNewFile,BufRead *.tsx,*.ts ALEDisable
   autocmd BufNew,BufNewFile,BufRead *.rs ALEDisable
   autocmd BufNew,BufNewFile,BufRead *.rs ALEDisable
   autocmd BufWritePre *rs call clearmatches()
@@ -203,26 +203,24 @@ if executable('rust-analyzer')
         \ })
 endif
 
-if executable('zubanls')
+if executable('zuban')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'ZubanLS',
-        \ 'cmd': ['zubanls'],
+        \ 'name': 'Zuban',
+        \ 'cmd': ['zuban', 'server'],
         \ 'allowlist': ['python'],
         \ })
 endif
 
 function! s:on_lsp_buffer_enabled() abort
-    if &filetype != "python"
-        setlocal omnifunc=lsp#complete
-        nmap <buffer> gd <plug>(lsp-definition)
-        nmap <buffer> gs <plug>(lsp-document-symbol-search)
-        nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-        nmap <buffer> gr <plug>(lsp-references)
-        nmap <buffer> gi <plug>(lsp-implementation)
-        nmap <buffer> gs <plug>(lsp-type-definition)
-        nmap <buffer> gR <plug>(lsp-rename)
-        nmap <buffer> K <plug>(lsp-hover)
-    endif
+    setlocal omnifunc=lsp#complete
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gs <plug>(lsp-type-definition)
+    nmap <buffer> gR <plug>(lsp-rename)
+    nmap <buffer> K <plug>(lsp-hover)
     setlocal signcolumn=yes
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gn <plug>(lsp-next-diagnostic)
@@ -365,10 +363,14 @@ map qn :cn<CR>
 map qp :cp<CR>
 map Q  :echo "Ex mode was disabled, because I don't want to enter it accidentally"<CR>
 
-map <F2> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --features zuban_debug --message-format short"<CR>
-map <F3> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
-map <F4> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test mypy --features zuban_debug -- 2>&1 \| tail -n 200"<CR>
+map <F2> :execute "!cargo build --features zuban_debug --tests --message-format short"<CR>
+map <F3> :execute "!cargo test --test mypylike --features zuban_debug -- --only-typecheck 2>&1 ".WordWithDashUnderCursor()<CR>
+map <C-F3> :execute "!cargo test --test mypylike --features zuban_debug -- --only-language-server 2>&1 ".WordWithDashUnderCursor()<CR>
+map <F4> :execute "!cargo test --test mypylike --features zuban_debug -- --only-typecheck 2>&1 \| tail -n 200"<CR>
+map <C-F4> :execute "!cargo test --test mypylike --features zuban_debug -- --only-language-server 2>&1 \| tail -n 200"<CR>
 map <F5> :execute "!rg -U '(?s)case ".WordWithDashUnderCursor()."\\].*?(\\[case\|\\z)'"<CR>
-map <F6> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target RUST_BACKTRACE=1 cargo test mypy --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
-map <F7> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo build --message-format short"<CR>
-map <F8> :execute "!CARGO_TARGET_DIR=/tmp/cargo_target  cargo test -- 2>&1"<CR>
+map <F6> :execute "!RUST_BACKTRACE=1 cargo test --test mypylike --features zuban_debug -- 2>&1 ".WordWithDashUnderCursor()<CR>
+map <F7> :execute "!cargo build --message-format short"<CR>
+map <F8> :execute "!cargo test -- 2>&1"<CR>
+map <F9> :execute "!cargo test --test blackbox ".expand('%:t:r')<CR>
+map <C-F9> :execute "!cargo test --test blackbox"<CR>
